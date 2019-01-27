@@ -1,0 +1,183 @@
+/* NOW STYLING FOR SMALLER SCREENS ( DECREASING SIZES !) */
+@media screen and (max-width: 991px){ /* tablets */
+    #main_menu{
+        font-size: 1.9em;
+    }
+    #pays_tab{
+        margin-top: -1px ;
+    }
+    #secondary_menu:hover{
+        height: 220px;
+    }
+    .picture_on_left, .picture_on_right{
+        justify-content: center !important;
+    }
+    .no_margin_top{
+        margin-top: 60px;
+    }
+    .photo_paysage, .photo_paysage .picture, .photo_paysage img{
+        width: 65vw;
+        height: 48vw;
+    }
+    .photo_carre, .photo_carre .picture, .photo_carre img{
+        width: 55vw;
+        height: 55vw;
+    }
+    .photo_portrait, .photo_portrait .picture, .photo_portrait img{
+        width: 48vw;
+        height: 65vw;
+    }
+    section{
+        margin-top: 30px !important;
+    }
+}
+
+@media screen and (min-width:768px){
+    #burger_menu_container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+    /* BURGER STYLING */
+
+#burger_menu_container{
+    margin: 30px 0;
+    width: 100%;
+}
+#burger_menu_container input{
+    display: none;
+}
+@media screen and (max-width:767px){
+    @media (orientation: landscape) {
+        h1{
+            padding-top: 5px;
+            font-size: 3em;
+        }
+    }
+    h1{
+        font-size: 5em;
+    }
+    /* BURGER MENU */
+    nav{
+        height: auto;
+        min-height: 80px;
+    }
+    #main_menu{
+        position: relative;
+        z-index: 5;
+        height: auto;
+        width: 80%;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        margin: 0 auto;
+    }
+    #pays_tab{
+        align-self: auto !important;
+        margin: 0;
+    }
+    #pays_tab:hover{
+        background: none;
+    }
+    #main_menu span.decoration{
+        display: none !important;
+    }
+    #main_menu .main_tabs{
+        width: 70%;
+        padding: 5px !important;
+        border: 1px solid white;
+        margin: 3px;
+    }
+    #secondary_menu{
+        margin-top: 0;
+    }
+    #burger{
+        position: absolute;
+        width: 90%;
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+    #burger *{
+        margin-left: 10px;
+    }
+    #burger_menu_container{
+        justify-content: center;
+        display: flex;
+        z-index: 1;
+    }
+    #burger_menu_container input{
+        position: absolute;
+        z-index: 10;
+        display: block;
+        width: 36px;
+        height: 32px;
+        top: -7px;
+        left: -5px;
+        cursor: pointer;
+        opacity: 0;
+    }
+
+    /*
+     * Just a quick hamburger
+     */
+    #burger_menu_container span
+    {
+      display: block;
+      width: 33px;
+      height: 4px;
+      margin-bottom: 5px;
+      position: relative;
+
+      background: #222;
+      border-radius: 3px;
+
+      z-index: 1;
+
+      transform-origin: 4px 0px;
+
+        /* setting the transition */
+      transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                  background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                  opacity 0.55s ease;
+    }
+
+    #burger_menu_container span:first-child
+    {
+      transform-origin: 100% 15%;
+    }
+
+    #burger_menu_container span:nth-last-child(3)
+    {
+      transform-origin: 15% 100%;
+    }
+
+    /*
+     * Transform all the slices of hamburger
+     * into a crossmark.
+     */
+    #burger_menu_container input:checked ~ span
+    {
+        opacity: 1;
+        transform: rotate(-45deg);
+        background: white;
+    }
+
+    /*
+     * But let's hide the middle one.
+     */
+    #burger_menu_container input:checked ~ span:nth-last-child(2)
+    {
+      opacity: 0;
+      transform: rotate(0deg) scale(0.2, 0.2);
+    }
+
+    /*
+     * Ohyeah and the last one should go the other direction
+     */
+    #burger_menu_container input:checked ~ span:nth-last-child(3)
+    {
+      transform: rotate(45deg);
+    }
+}

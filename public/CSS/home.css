@@ -1,0 +1,67 @@
+
+/**
+** style for wallpapers
+**/
+#background{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#wallpaper{
+    height: 110%;
+    width: 100%;
+}
+#parallaxe{
+    position: absolute;
+    height: 120%;
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    #parallaxe{
+        display: none;
+    }
+}
+/**
+** main style
+**/
+main{
+    margin: 20px;
+    margin-top: 600px;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    overflow: hidden;
+}
+h2{
+    width: 100%;
+    padding: 20px;
+    font-family: 'Amatic SC', cursive;
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: 200;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2.3em;
+}
+main p{
+    margin: 5px 30px;
+    padding: 5px 10px;
+    text-align: justify;
+    font-family: 'Roboto', 'sans-serif';
+    text-indent: 2em;
+    font-weight: 300;
+    font-size: 1.1em;
+    line-height: 1.2;
+    color: #010000;
+    width: 100%;
+}
+main hr{
+    text-align: center;
+    width: 60%;
+    align-self: center;
+}

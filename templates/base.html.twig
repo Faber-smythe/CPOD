@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {# META & CIE #}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {# RESET #}
+        <link href="{{ asset('CSS/reset.css')}}" rel="stylesheet">
+        {# CDN STYLE #}
+        <link href="https://fonts.googleapis.com/css?family=Cantarell" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Cedarville+Cursive" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300" rel="stylesheet">
+        {# STYLESHEETS #}
+        <link rel="stylesheet" href="{{ asset('CSS/main_menu.css') }}">
+        <link rel="stylesheet" href="{{ asset('CSS/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('CSS/mobile.css') }}">
+
+        {% block stylesheets %}
+        {% endblock %}
+    </head>
+
+
+    <body>
+        <header>
+            <h1>
+                {% block page_title %}{% endblock %}
+            </h1>
+            <nav id="top_nav">
+                <div id="burger_menu_container">
+                    <div id="burger">
+                        <input id="burgercheck" type="checkbox">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <ul id="main_menu">
+                        <li class="main_tabs normal_tabs"><a href="{{path('home')}}">alors déjà</a></li>
+                        <span class="decoration">·</span>
+                        <li id="pays_tab" class="main_tabs">
+                            <div>
+                                pays &nbsp;
+                                <i class="material-icons">keyboard_arrow_down</i>
+                            </div>
+                            <ul id="secondary_menu">
+                                <li><a href="{{ path('thailand.index') }}">Thaïlande</a></li>
+                                <li><a href="{{ path('vietnam.index') }}">Vietnam</a></li>
+                                <li><a href="{{ path('malaysia.index') }}">Malaisie...</a></li>
+                                <li><a href="{{ path('singapore') }}">Singapour...</a></li>
+                                <li><a href="{{ path('japan.index') }}">Japon...</a></li>
+                            </ul>
+                        </li>
+                        <span class="decoration">·</span>
+                        <li class="main_tabs normal_tabs"><a href="{{ path('journal.index') }}">journal</a></li>
+                        <span class="decoration">·</span>
+                        <li class="main_tabs normal_tabs"><a href="{{ path('map') }}">c'est par où ?</a></li>
+                        <span class="decoration">·</span>
+                        <li class="main_tabs normal_tabs"><a href="{{ path('galery') }}">fais voir</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        {% block body %}
+        {% endblock %}
+
+        <a id="go_to_admin" href="#" title="Admin login"><i class="material-icons">build</i></a>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
+        <script src="JS/mainpages_script.js"></script>
+        <script src="JS/mobile_script.js"></script>
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+
+</html>

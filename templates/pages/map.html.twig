@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+
+{% block head %}
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('CSS/map.css') }}">
+        {% endblock %}
+
+{% endblock %}
+{% block title %}Alors déjà...{% endblock %}
+{% block page_title %} C'est par où ? {% endblock %}
+
+{% block body %}
+
+<main>
+        <h2 id="headline">Globalement très loin</h2>
+        <p class="margin" style="text-align:center;text-indent:0;">Les pays dans notre ligne de mire sont listés dans l'onglet "Pays". Cela dit, il y a souvent plusieurs étapes à l'intérieur d'un seul pays. <br>Voici l'itinéraire parcouru à ce jour et les prévisions de la suite.</p>
+        <div id="responsive_map_container">
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1kTIEFlN5ayn8BYhAR60Jl1ssioUmdHZk" width="640" height="480"></iframe>
+        </div>
+        <p id="steps_links_title">Les étapes en images</p> <br><br>
+        <p id="steps_links">
+            <span>Thaïlande</span><br><br>
+            <a href="../pays/thailande.php#bangkok">Bangkok</a> -
+            <a href="../pays/thailande.php#koh_lanta">Koh&nbsp;Lanta</a> -
+            <a href="../pays/thailande.php#chiang_mai">Chiang&nbsp;Mai</a> -
+            <a href="../pays/thailande.php#chiang_rai">Chiang&nbsp;Rai</a>
+        </p>
+        <p id="steps_links">
+            <span>Vietnam</span><br><br>
+            <a href="../pays/vietnam.php#hanoi">Hanoï</a> -
+            <a href="../pays/vietnam.php#sa_pa">Sa&nbsp;Pa</a> -
+            <a href="../pays/vietnam.php#ha_long">Ha&nbsp;Long</a> -
+            <a href="../pays/vietnam.php#ninh_binh">Ninh&nbsp;Binh</a> -
+            <a href="../pays/vietnam.php#hoi_an">Hoi&nbsp;An</a>
+        </p>
+    </main>
+
+    <section id="stats">
+        <h4>
+            {{ how_many_days }} jours de voyage
+        </h4>
+        <h4>27 heures d'avion</h4>
+        <h4>76 heures de bus et de train</h4>
+        <h4>17542 kilomètres</h4>
+    </section>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="{{ asset('JS/map.js')}}"></script>
+{% endblock %}

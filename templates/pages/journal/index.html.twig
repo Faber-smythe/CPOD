@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+
+{% block head %}
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('CSS/journal.css') }}">
+        {% endblock %}
+
+{% endblock %}
+
+{% block title %}Journal{% endblock %}
+{% block page_title %} Journal {% endblock %}
+
+{% block body %}
+
+
+    <main>
+
+        <div id="sections_navigation">
+            <h2 class="sections_tab" id="tab_voyage">Billets de voyage</h2>
+            <h2 class="sections_tab" id="tab_developpement">Notes de développement</h2>
+        </div>
+        <div id="sections_container">
+
+            <section id="voyage">
+            {% for log in travel_logs %}
+                <div class="loglist_item">
+                    <a href="{{ path('journal.show', {id: log.id, slug: log.slug}) }}">
+                        {{ log.title }}
+                    </a>
+                    <p>
+
+                        <hr />
+                    </p>
+                </div>
+            {% endfor %}
+            </section>
+
+            <section id="developpement">
+            {% for log in dev_logs %}
+                <div class="loglist_item">
+                    <a href="{{ path('') }}">
+                        {{ log.title }}
+                    </a>
+                    <p>
+                        {{log.date}}
+                        <hr />
+                    </p>
+                </div>
+            {% endfor %}
+            </section>
+
+        </div>
+
+    </main>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
+    <script src="/c-est-par-ou-deja/includes/mobile_script.js"></script>
+    <script src="/c-est-par-ou-deja/includes/mainpages_script.js"></script>
+
+    <script src="{{ asset('JS/journal.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+
+{% block head %}
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('CSS/home.css') }}">
+        {% endblock %}
+
+{% endblock %}
+{% block title %}Alors déjà...{% endblock %}
+{% block page_title %} Alors déjà {% endblock %}
+
+{% block body %}
+
+    <main>
+        <h2>À propos de nous</h2>
+        <hr>
+        <p>Bienvenue sur C'est par où déjà. =)</p>
+        <p>Alors voilà, c’est l’histoire d’un apprenti développeur, Smythe, et d’une scribouillarde, Ariane. Ils partent vivre en Asie du Sud-Est pour pas loin d'un an, plus ou moins préparés et conscients de l’énormité de leur projet. Ils empruntent une route épique :</p>
+        <p style="text-align:center;text-indent:0;">
+            <a href="{{ path('thailand.index') }}">Thaïlande</a> -
+            <a href="{{ path('vietnam.index') }}">Vietnam</a> -
+            <a href="{{ path('malaysia.index') }}">Malaisie</a> -
+            <a href="{{ path('singapore') }}">Singapour</a> -
+            <a href="{{ path('japan.index') }}">Japon</a>.
+        </p>
+        <p>Leur objectif, car ils ne sont pas complètement ahuris, est de joindre l’utile à l’agréable. Smythe, en bon autodidacte borné, se forme sur internet et monte un blog de voyage qui lui permet d’apprendre sur le tas. Ariane passe le plus clair de ses journées à écrire et passe parfois sur le blog pour lui suggérer quelques lignes (comme celles-ci).</p>
+        <p>Sur ce blog, outre les éblouissants progrès de Smythe, vous pourrez suivre notre itinéraire, découvrir les décors que nous traversons, et partager à l’occasion quelques anecdotes désopilantes sur le voyage et le code. De belles barres de rire vous attendent, saupoudrées d’un peu de seum. </p>
+       <p style="align-self: flex-start;">Enjoy.</p>
+    </main>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="{{ asset('JS/home.js')}}"></script>
+{% endblock %}

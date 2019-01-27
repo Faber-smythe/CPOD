@@ -1,0 +1,85 @@
+html{
+    position: relative;
+    z-index: -999;
+}
+#top_nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80px;
+}
+#main_menu{
+    width: 90%;
+    height: 50px;
+    font-size: 2.5em;
+    text-transform: capitalize;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.main_tabs{
+    text-transform: uppercase;
+    padding: 5px 2vw;
+    font-family: 'Amatic SC', cursive;
+    border: 1px solid transparent;
+    transition: 0.2s;
+    transform-origin: bottom;
+    text-align: center;
+}
+.main_tabs:hover{
+    cursor: pointer;
+}
+@media screen and (min-width: 768px){
+    .normal_tabs:hover, .normal_tabs:focus{
+        border: 1px solid #010000;
+        padding: 10px 2vw;
+    }
+}
+#pays_tab{
+    padding: 10px;
+    margin-top: -8px;
+    transform-origin: bottom;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    align-self: flex-start !important;
+    z-index: 5;
+}
+#pays_tab div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+@media screen and (min-width: 768px){
+    #pays_tab:hover, #pays_tab:focus{
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid #c8c7c6;
+    }
+}
+#secondary_menu{
+    line-height: 130%;
+    font-size: 0.85em;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    overflow: hidden;
+    height: 0;
+}
+#secondary_menu li a{
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    padding: 0 5px;
+    border: 1px solid transparent;
+}
+#secondary_menu li a::before{
+    content: ">";
+    opacity: 0;
+}
+#secondary_menu li a:hover::before{
+    opacity: 1;
+}
