@@ -11,9 +11,18 @@ $(document).ready(function($) {
     //resize the picture
     console.log($('#wallpaper_monks').css('width'));
     console.log($('#wallpaper_monks').css('height'));
+    console.log(
+        (
+            (parseInt($('#wallpaper_monks').css('width')))
+        )
+    );
 //    $('#background').css('height', vh_in_pixel+'px');
     $('#background').css('height', (($('#wallpaper_monks').css('width'))*1.633));
-    $('#wallpaper_monks').css('height', (($('#wallpaper_monks').css('width'))*1.633));
+    $('#wallpaper_monks').css('height', (
+            (parseInt($('#wallpaper_monks').css('width')))
+            *1.633
+        ).toString()+'px'
+    );
 //    $('#wallpaper_monks').css('height', '800px');
     console.log($('#wallpaper_monks').css('width'));
     console.log($('#wallpaper_monks').css('height'));
@@ -23,11 +32,11 @@ $(document).ready(function($) {
         $('main').css('margin-top', (vh_in_pixel*0.9));
         //dealing with image positionning through devices
         var wallpaper_height = $('#wallpaper_monks').height();
-        if(window.matchMedia("(max-width:1299px)").matches){
+        if(window.matchMedia("(max-width:991)").matches){
             var initial_margin = -(vw_in_pixel*0.4);
             console.log('small');
         }
-        if(window.matchMedia("(min-width:1300px)").matches){
+        if(window.matchMedia("(min-width:992px)").matches){
             var initial_margin = -(vw_in_pixel*0.45);
             console.log('big');
         }
@@ -43,6 +52,7 @@ $(document).ready(function($) {
             wallpaper_final_margin = vh_in_pixel-wallpaper_height;
         }
         var motion_duration = $('body').height();
+        console.log(initial_margin);
         $('#wallpaper_monks').css('margin-top', (initial_margin));
         var c_est_par_ou_scene = new ScrollMagic.Scene({
             triggerElement: 'body',

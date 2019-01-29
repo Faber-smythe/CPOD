@@ -1,0 +1,70 @@
+{% extends 'admin_base.html.twig' %}
+
+
+{% block head %}
+
+        {% block stylesheets %}
+        {% endblock %}
+
+
+{% endblock %}
+
+{% block title %}Administration{% endblock %}
+{% block page_title %} {{ logtype }}-Logs {% endblock %}
+
+{% block body %}
+
+    <main>
+        {% for message in app.flashes('success') %}
+    <p class="{% if action is defined %} {{ action }} {% endif %}" style="padding: 10px; color: #eee; border-radius:5px; text-align: center; width: 100%; font-family: 'Roboto', 'sans-serif';" class="new">
+            {{ message }}
+        </p>
+        {% endfor %}
+        <table>
+            <tr>
+                <th>Titre</th>
+                <th></th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th><a href="{{ path('admin.journal.new', {logtype: logtype}) }}" class="btn new">créer</a></th>
+            </tr>
+
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.title }}</td>
+                <td></td>
+                <td>{{ log.date|date('Y-m-d') }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="{{ path('admin.journal.edit', {id: log.id, logtype: logtype}) }}" class="btn edit">modifier</a></td>
+                <td>
+                    <form method="POST" action="{{ path('admin.journal.delete', {id: log.id, logtype: logtype}) }}" onsubmit="return confirm('Confirmer la suppression ?')">
+                        <input type='hidden' name="_method" value="DELETE" />
+                        <input type='hidden' name="_token" value="{{ csrf_token('delete' ~ log.id) }}" />
+                        <button class="btn delete" style="padding: 7px;">supprimer</button>
+                    </form>
+                    {# <a href="#" class="btn delete">supprimer</a> #}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+
+    </main>
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'admin_base.html.twig' %}
+
+
+{% block head %}
+
+        {% block stylesheets %}
+
+        {% endblock %}
+
+
+{% endblock %}
+
+{% block title %}Administration{% endblock %}
+{% block page_title %} Journal {% endblock %}
+
+{% block body %}
+
+    <main>
+
+        <a class="admin_nav_link"  href="{{ path('admin.journal.index', {logtype: 'travel'}) }}"> Travel Logs </a>
+        <a class="admin_nav_link"  href="{{ path('admin.journal.index', {logtype: 'dev'}) }}"> Development Logs </a>
+
+    </main>
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+{% endblock %}

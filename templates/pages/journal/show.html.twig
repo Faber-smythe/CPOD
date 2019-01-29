@@ -50,19 +50,14 @@
             {{ log.content }}
             </pre>
 
+            <pre>
+            {{ log.content2 }}
+            </pre>
     </main>
 
 {% endblock %}
 
 
 {% block javascripts %}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
-    <script src="/c-est-par-ou-deja/includes/mobile_script.js"></script>
-    <script src="/c-est-par-ou-deja/includes/mainpages_script.js"></script>
-
     <script src="{{ asset('JS/journal.js')}}"></script>
 {% endblock %}

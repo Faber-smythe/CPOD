@@ -1,0 +1,24 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block head %}
+
+        {% block stylesheets %}
+            <link rel='stylesheet' href="{{ asset('CSS/log_form.css') }}"/>
+        {% endblock %}
+
+
+{% endblock %}
+
+{% block title %}Administration{% endblock %}
+{% block page_title %} nouveau {{ logtype }}-log {% endblock %}
+
+{% block body %}
+
+    {{ include('admin/journal/_form.html.twig', {form:form, submit_label: 'créer', submit_class:'new'}) }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+{% endblock %}

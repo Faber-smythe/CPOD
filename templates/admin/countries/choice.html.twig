@@ -1,0 +1,31 @@
+{% extends 'admin_base.html.twig' %}
+
+
+{% block head %}
+
+        {% block stylesheets %}
+
+        {% endblock %}
+
+
+{% endblock %}
+
+{% block title %}Administration{% endblock %}
+{% block page_title %} Pays {% endblock %}
+
+{% block body %}
+
+    <main>
+    {% for country in countries %}
+
+        <a class="admin_nav_link" href="{{ path('admin.countries.index', {country: country.title}) }}">{{ country.title }}</a>
+
+    {% endfor %}
+    </main>
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+{% endblock %}

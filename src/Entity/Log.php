@@ -2,18 +2,32 @@
 
 namespace App\Entity;
 
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LogRepository")
+ * @UniqueEntity("title")
  */
 class Log
 {
 
     const TOPIC = [
-        0 => 'voyage',
-        1 => 'développement'
+        'full_name' => [
+            0 => 'Billets de voyage',
+            1 => 'Notes de développement'
+        ],
+        'slug' => [
+            0 => 'travel',
+            1 => 'dev'
+        ]
+    ];
+    const POSITION = [
+        0 => 'Début',
+        1 => 'Milieu',
+        2 => 'Fin'
     ];
 
 
@@ -26,13 +40,17 @@ class Log
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 50
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $topic;
+    public $topic;
 
     /**
      * @ORM\Column(type="text")
@@ -48,6 +66,11 @@ class Log
      * @ORM\Column(type="integer", nullable=true)
      */
     private $picture_position;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $content2;
 
 
     public function __construct()
@@ -73,7 +96,7 @@ class Log
     }
 
     public function getSlug(): string
-    { 
+    {
         return (new Slugify())->slugify($this->title);
     }
 
@@ -121,6 +144,18 @@ class Log
     public function setPicturePosition(?int $picture_position): self
     {
         $this->picture_position = $picture_position;
+
+        return $this;
+    }
+
+    public function getContent2(): ?string
+    {
+        return $this->content2;
+    }
+
+    public function setContent2(?string $content2): self
+    {
+        $this->content2 = $content2;
 
         return $this;
     }

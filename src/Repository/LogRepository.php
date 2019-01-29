@@ -19,19 +19,47 @@ class LogRepository extends ServiceEntityRepository
         parent::__construct($registry, Log::class);
     }
 
-    // /**
-    //  * @return Log[] Returns an array of Log objects
-    //  */
 
-    public function findTravelLogs(): array
+    /**
+    * @return Log[] Returns an array of Log objects
+    */
+    public function findLastLog($logtype)
     {
         return $this->createQueryBuilder('l')
-            -> where('l.topic = 0')
+            ->andWhere('l.topic = '.$logtype)
+            ->orderBy('l.id', 'DESC')
+            ->setMaxResults(1)
             ->getQuery()
             ->getResult()
         ;
     }
 
+    /**
+    * @return Log[] Returns an array of Log objects
+    */
+    public function findOlderLogs($logtype)
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.topic = '.$logtype)
+            ->setFirstResult(1)
+            ->orderBy('l.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+    * @return Log[] Returns an array of Log objects
+    */
+    public function findAllLogs($logtype)
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.topic = '.$logtype)
+            ->orderBy('l.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     // /**
     //  * @return Log[] Returns an array of Log objects

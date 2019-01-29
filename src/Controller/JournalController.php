@@ -26,8 +26,6 @@ class JournalController extends AbstractController
     public function journal_index(): Response
     {
 
-
-
         // $log = new Log();
         // $log -> setTitle('Premier billet de voyage !')
         //     -> setTopic(0)
@@ -46,12 +44,15 @@ class JournalController extends AbstractController
         // $em->persist($log);
         // $em->flush();
 
+        $last_travel_log = $this->repository->findLastLog(0);
+        $travel_logs = $this->repository->findOlderLogs(0);
 
-        $travel_logs = $this->repository->findTravelLogs();
-        $dev_logs = $this->repository->findOneBy(['topic' => 1]);
+        $last_dev_log = $this->repository->findLastLog(1);
+        $dev_logs = $this->repository->findOlderLogs(1);
 
-        dump($travel_logs);
         return $this->render('pages/journal/index.html.twig', [
+            'last_travel_log' => $last_travel_log,
+            'last_dev_log' => $last_dev_log,
             'travel_logs' => $travel_logs,
             'dev_logs' => $dev_logs
         ]);

@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# RESET #}
-        <link href="{{ asset('CSS/reset.css')}}" rel="stylesheet">
+        <link href="{{ asset('CSS/reset.css') }}" rel="stylesheet">
         {# CDN STYLE #}
         <link href="https://fonts.googleapis.com/css?family=Cantarell" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
@@ -71,15 +71,15 @@
         {% block body %}
         {% endblock %}
 
-        <a id="go_to_admin" href="#" title="Admin login"><i class="material-icons">build</i></a>
+        <a id="go_to_admin" href="{{ path('admin.home') }}" title="Admin login"><i class="material-icons">build</i></a>
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
-        <script src="JS/mainpages_script.js"></script>
-        <script src="JS/mobile_script.js"></script>
+        <script src="{{ asset('JS/mainpages_script.js') }}"></script>
+        <script src="{{ asset('JS/mobile_script.js') }}"></script>
         {% block javascripts %}
         {% endblock %}
     </body>

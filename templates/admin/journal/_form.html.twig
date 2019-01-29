@@ -1,0 +1,27 @@
+<main id="fix_header">
+
+    {{ form_start(form) }}
+
+        <div class="row">
+            <div class="form_row_container col-3">
+                {{ form_row(form.title) }}
+                {% if logtype == 'travel' %}
+                    {{ form_row(form.topic, {'value': '0'}) }}
+                {% endif %}
+                {% if logtype == 'dev' %}
+                    {{ form_row(form.topic, {'value': '1'}) }}
+                {% endif %}
+                {{ form_row(form.date) }}
+                {{ form_row(form.picture_position) }}
+            </div>
+            <div class="form_row_container col-5 text-area-container">
+                {{ form_row(form.content) }}
+                {{ form_row(form.content2) }}
+            </div>
+        </div>
+
+        <button  class="btn-submit {{ submit_class }}">{{ submit_label }}</button>
+
+    {{ form_end(form) }}
+
+</main>

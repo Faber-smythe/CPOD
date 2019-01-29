@@ -1,0 +1,29 @@
+{% extends 'admin_base.html.twig' %}
+
+
+{% block head %}
+
+        {% block stylesheets %}
+
+        {% endblock %}
+
+
+{% endblock %}
+
+{% block title %}Administration{% endblock %}
+{% block page_title %} Back-Office {% endblock %}
+
+{% block body %}
+
+    <main>
+        <a class="admin_nav_link" href="{{ path('admin.countries') }}">shots</a>
+        <a class="admin_nav_link" href="{{ path('admin.journal') }}">logs</a>
+        <a class="admin_nav_link" href="{{ path('admin.galery') }}">pictures</a>
+    </main>
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+{% endblock %}

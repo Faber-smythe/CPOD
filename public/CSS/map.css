@@ -18,7 +18,6 @@
 }
 #wallpaper_monks{
     width: 100%;
-    height: auto;
 }
 /* This is a hack to target only IE10 and higher */
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {

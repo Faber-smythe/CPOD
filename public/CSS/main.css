@@ -1,6 +1,5 @@
 body {
     background: grey;
-
     position: relative;
     z-index: -99;
     width: 100%;
@@ -39,16 +38,19 @@ main a:hover{
 }
 
 #go_to_admin{
+    position: absolute;
+    z-index: 999;
+    bottom: 0px;
     align-self: flex-start;
-    margin: 5px;
+    margin: 10px;
     padding: 5px;
     border-radius: 4px;
-    background: rgba(48, 48, 48, 0.8);
+    background: rgba(40, 43, 47, 0.8);
     color: #eee;
 }
 #go_to_admin:hover {
     background: rgba(238, 238, 238, 0.8);
-    color: rgb(61, 61, 61);
+    color: rgba(40, 43, 47, 0.8);
     transition: all 0.3s ease;
 }
 #go_to_admin i{
