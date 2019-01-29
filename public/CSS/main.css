@@ -37,7 +37,7 @@ main a:hover{
     color: inherit;
 }
 
-#go_to_admin{
+#admin{
     position: absolute;
     z-index: 999;
     bottom: 0px;
@@ -48,12 +48,12 @@ main a:hover{
     background: rgba(40, 43, 47, 0.8);
     color: #eee;
 }
-#go_to_admin:hover {
+#admin:hover {
     background: rgba(238, 238, 238, 0.8);
     color: rgba(40, 43, 47, 0.8);
     transition: all 0.3s ease;
 }
-#go_to_admin i{
+#admin i{
     font-size: 1.2rem !important;
 }
 pre{

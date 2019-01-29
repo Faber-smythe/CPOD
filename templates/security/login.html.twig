@@ -1,0 +1,64 @@
+{% extends 'admin_base.html.twig' %}
+
+
+{% block head %}
+
+        {% block stylesheets %}
+            <style>
+                main {
+                    justify-content: space-around;
+                }
+                textarea {
+                    min-height: 15vh;
+                    min-width: 100%;
+                    font-size: 0.9em;
+                }
+                #log_date_date select, #log_date_time select{
+                    margin: 5px;
+                }
+                #log_date_date, #log_date_time{
+                    margin-left: -5px;
+                }
+                .btn-submit{
+                    padding: 5px;
+                    background: transparent;
+                }
+            </style>
+        {% endblock %}
+
+{% endblock %}
+{% block title %}Alors déjà...{% endblock %}
+{% block page_title %} Alors déjà {% endblock %}
+
+{% block body %}
+
+    <main>
+        {% if error %}
+        <p class="delete flash_news">
+            {{ error.messageKey | trans(error.messagedata, 'security') }}
+        </p>
+        {% endif %}
+        <form method ="POST" action="{{ path('login') }}">
+            <div class="row">
+                <div class="form_row col-2 mar-3">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" id="username" name="_username"  value="{{ last_username }}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form_row col-2 mar-3">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="_password"  />
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn-submit mar-3">Connexion</button>
+            </div>
+        </form>
+    </main>
+
+{% endblock %}
+
+
+{% block javascripts %}
+{% endblock %}
