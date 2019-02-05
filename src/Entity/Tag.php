@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CountryRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
  */
-class Country
+class Tag
 {
     /**
      * @ORM\Id()
@@ -22,11 +21,6 @@ class Country
      * @ORM\Column(type="string", length=255)
      */
     private $title;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $position;
 
     public function getId(): ?int
     {
@@ -55,15 +49,5 @@ class Country
         return $this->getTitle();
     }
 
-    public function getPosition(): ?int
-    {
-        return $this->position;
-    }
 
-    public function setPosition(int $position): self
-    {
-        $this->position = $position;
-
-        return $this;
-    }
 }

@@ -10,6 +10,7 @@ $(document).ready(function($) {
 **/
     //positionning main section
     $('main').css('margin-top', (vh_in_pixel*0.9));
+
     var parallaxe_initial_margin = ($('#parallaxe').height())/17;
     $('#parallaxe').css('margin-top', parallaxe_initial_margin);
     var parallaxe_final_margin = -($('#parallaxe').height())/6;

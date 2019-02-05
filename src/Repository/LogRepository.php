@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use Doctrine\ORM\Query;
 use App\Entity\Log;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -35,16 +36,19 @@ class LogRepository extends ServiceEntityRepository
     }
 
     /**
-    * @return Log[] Returns an array of Log objects
-    */
-    public function findOlderLogs($logtype)
+     * [findOlderLogs description]
+     * @param  [type] $logtype [description]
+     * @return Query           [description]
+     */
+    public function findOlderLogs($logtype) : Query
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.topic = '.$logtype)
             ->setFirstResult(1)
+            //->orderBy('l.id', 'DESC')
+            ->setMaxResults(5)
             ->orderBy('l.id', 'DESC')
             ->getQuery()
-            ->getResult()
         ;
     }
 

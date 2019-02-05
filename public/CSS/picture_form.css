@@ -1,0 +1,34 @@
+/**
+ * LOG  FORM
+ */
+main {
+    display: flex;
+    justify-content: flex-start !important;
+}
+textarea {
+    min-height: 23vh;
+    min-width: 100%;
+    font-size: 0.9em;
+}
+#picture_date_date {
+    margin-left: -5px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+#picture_date_date select {
+    margin-right: 10px !important;
+}
+
+#picture_tag{
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+}
+#picture_tag label{
+    margin-right: 15px;
+    padding-left: 25px;
+}
+#picture_tag input:hover, #picture_tag label:hover {
+    cursor: pointer;
+}

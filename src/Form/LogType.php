@@ -20,7 +20,9 @@ class LogType extends AbstractType
                 'label' => 'catégorie',
                 'choices' => array_flip(Log::TOPIC['full_name'])
             ])
-            ->add('date')
+            ->add('date', null, [
+                'label' => 'date'
+            ])
             ->add('picture_position', ChoiceType::class, [
                 'label' => "positionnement de l'image",
                 'choices' => array_flip(Log::POSITION),

@@ -6,9 +6,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\LogType;
 use App\Repository\LogRepository;
-use App\Repository\CountryRepository;
 use App\Entity\Log;
-use App\Entity\Country;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
@@ -18,9 +16,8 @@ class AdminLogsController extends AbstractController
 {
 
 
-    public function __construct(CountryRepository $countryrepository, LogRepository $logrepository, ObjectManager $em)
+    public function __construct(LogRepository $logrepository, ObjectManager $em)
     {
-        $this->countryrepository = $countryrepository;
         $this->logrepository = $logrepository;
         $this->manager = $em;
     }

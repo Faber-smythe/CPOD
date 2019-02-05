@@ -48,12 +48,11 @@
                 <td></td>
                 <td><a href="{{ path('admin.journal.edit', {id: log.id, logtype: logtype}) }}" class="btn edit">modifier</a></td>
                 <td>
-                    <form method="POST" action="{{ path('admin.journal.delete', {id: log.id, logtype: logtype}) }}" onsubmit="return confirm('Confirmer la suppression ?')">
+                    <form style="width: auto !important;" method="POST" action="{{ path('admin.journal.delete', {id: log.id, logtype: logtype}) }}" onsubmit="return confirm('Confirmer la suppression ?')">
                         <input type='hidden' name="_method" value="DELETE" />
                         <input type='hidden' name="_token" value="{{ csrf_token('delete' ~ log.id) }}" />
                         <button class="btn delete" style="padding: 7px;">supprimer</button>
                     </form>
-                    {# <a href="#" class="btn delete">supprimer</a> #}
                 </td>
             </tr>
             {% endfor %}

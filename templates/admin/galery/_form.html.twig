@@ -1,0 +1,24 @@
+<main id="fix_header">
+
+    {{ form_start(form) }}
+
+        <div class="row">
+            <div class="form_row_container col-5">
+                {{ form_row(form.title) }}
+                {{ form_row(form.country, {'value': '0'}) }}
+                {{ form_row(form.date) }}
+            </div>
+            <div class="form_row_container col-7">
+                {{ form_row(form.comment) }}
+            </div>
+            <div class="form_row_container col-8">
+                {{ form_row(form.tag) }}
+            </div>
+        </div>
+
+
+        <button  class="btn-submit {{ submit_class }}">{{ submit_label }}</button>
+
+    {{ form_end(form) }}
+
+</main>

@@ -40,25 +40,35 @@ main{
     background: #fff;
     transition: 0.4s;
     border: 1px solid #fff;
-    font-size: 2.3em;
+    font-size: 2em;
+    color: inherit;
 }
 .sections_tab:hover{
     cursor: pointer;
     opacity: 1 !important;
     font-size: 2.3em !important;
 }
-#tab_voyage{
-    font-size: 2em;
-    opacity: 0.8;
-    border-top-right-radius: 15px;
+.active_tab{
     border-top: 1px solid #010000;
+    font-size: 2.3em;
+    opacity: 1 !important;
+}
+.other_tab{
+    font-size: 2em;
+    opacity: 0.8 !important;
+    border-bottom:  1px solid #010000;
+}
+#tab_voyage{
+    border-top-right-radius: 15px;
+}
+#tab_voyage.active_tab{
     border-right:  1px solid #010000;
 }
 #tab_developpement{
-    font-size: 2em;
-    opacity: 0.8;
     border-top-left-radius: 15px;
-    border-bottom:  1px solid #010000;
+}
+#tab_developpement.active_tab{
+    border-left:  1px solid #010000;
 }
 #sections_container{
     font-family: 'Roboto', 'sans-serif';
@@ -89,6 +99,8 @@ section{
 }
 section div{
     display: flex;
+}
+.last_log_container{
     flex-direction: column;
 }
 h3{
@@ -111,12 +123,80 @@ section a{
 section a:hover{
     color: inherit;
 }
+.loglist_item_container{
+    color: auto !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loglist_item_container a{
+    margin: 20px;
+}
+.loglist_item {
+    position: relative;
+    width: 22vw;
+    height: 22vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #eee;
+}
+.loglist_item_picture{
+    position: absolute;
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+    background: red;
+    filter: brightness(0.6);
+}
+.loglist_item:hover .loglist_item_picture{
+    filter: brightness(0.2);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+.loglist_item .bonus_text{
+    opacity: 0;
+    margin-left: 60px !important;
+}
+.loglist_item:hover .bonus_text{
+    opacity: 1;
+    margin-left: 15px !important;
+    transition: all 0.4s ease;
+}
+.loglist_item hr {
+    opacity: 0;
+    margin: 0px !important;
+    margin-left: -100px !important;
+    width: 50% !important;
+    align-self: flex-start !important;
+    border-color: #eee;
+}
+.loglist_item:hover hr {
+    opacity: 1;
+    margin: 0px !important;
+    transition: all 0.4s ease;
+}
+.loglist_item h3, p, hr{
+    position: relative;
+    z-index: 10;
+    margin: 15px;
+    font-size: 1.35em;
+    text-indent: 0px !important;
+    text-align: left;
+}
+.loglist_item h3 {
+    font-size: 1.8em;
+    margin: 20px 15px -20px 15px;
+}
+
+/**
+ * SHOW.TWIG
+ */
 .img_container{
     margin: 10px auto;
     width: 500px;
     height: 500px;
-}
-@media screen and (min-width: 992px){
+}@media screen and (min-width: 992px){
     .img_container{
         box-shadow: 5px 5px 10px 5px rgba(85, 85, 85, 0.5);
     }

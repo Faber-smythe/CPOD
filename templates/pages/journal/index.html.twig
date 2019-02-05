@@ -5,21 +5,6 @@
 
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('CSS/journal.css') }}">
-            <style>
-                .loglist_item {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                }
-                hr {
-                    margin: 15px 0px !important;
-                    width: 50% !important;
-                    align-self: auto !important;
-                }
-                .loglist_item p, hr{
-                    display: inline-block;
-                }
-            </style>
         {% endblock %}
 
 {% endblock %}
@@ -36,14 +21,21 @@
     <main>
 
         <div id="sections_navigation">
-            <h2 class="sections_tab" id="tab_voyage">Billets de voyage</h2>
-            <h2 class="sections_tab" id="tab_developpement">Notes de développement</h2>
+        {% if topic == 'voyage' %}
+            <a href="#" class="active_tab sections_tab" id="tab_voyage"><h2>Billets de voyage</h2></a>
+            <a href="{{ path('journal.index', {topic: 'developpement'}) }}" class="other_tab sections_tab" id="tab_developpement"><h2>Notes de développement</h2></a>
+        {% endif %}
+        {% if topic == 'developpement' %}
+            <a href="{{ path('journal.index', {topic: 'voyage'}) }}" class="other_tab sections_tab" id="tab_voyage"><h2>Billets de voyage</h2></a>
+            <a href="#" class="active_tab sections_tab" id="tab_developpement"><h2>Notes de développement</h2></a>
+        {% endif %}
         </div>
+
         <div id="sections_container">
 
-            <section id="voyage">
-            <div>
-                {% for log in last_travel_log %}
+            <section>
+                <div class='last_log_container'>
+                {% for log in last_log %}
                     <hr />
                     <h3> {{ log.title }} </h3>
 
@@ -57,54 +49,38 @@
 
                     <p>Publié le {{ log.date|date('d/m/Y') }}</p>
                 {% endfor %}
-            </div>
-            <hr style="margin: 20px 0px; width: 100% !important;"/>
-            {% for log in travel_logs %}
-                <div class="loglist_item">
-                    <h3>
-                        <a href="{{ path('journal.show', {id: log.id, slug: log.slug}) }}">
-                            {{ log.title }}
-                        </a>
-                    </h3>
-                    <p>
-                        {{ log.date|date('d/m/Y') }}
-                    </p>
-                    <hr />
                 </div>
-            {% endfor %}
-            </section>
+                <hr style="margin: 20px 0px; width: 100% !important;"/>
+                <div class="row">
+                {% for log in logs %}
 
-            <section id="developpement">
-            <div>
-            {% for log in last_dev_log %}
-                <hr />
-                <h3> {{ log.title }} </h3>
-
-                <pre>
-                {{ log.content }}
-                </pre>
-
-                <pre>
-                {{ log.content2 }}
-                </pre>
-
-                <p>Publié le {{ log.date|date('d/m/Y') }}</p>
-            {% endfor %}
-            </div>
-            <hr style="margin: 20px 0px; width: 100% !important;"/>
-            {% for log in last_dev_log %}
-                <div class="loglist_item">
-                    <h3>
+                    <div class="loglist_item_container col-4 mb-col-6">
                         <a href="{{ path('journal.show', {id: log.id, slug: log.slug}) }}">
-                            {{ log.title }}
+                            <div class="loglist_item">
+
+                                {% if loop.index != 1 %}
+                                <div class="loglist_item_picture" style="background-image:url('')"></div>
+                                <h3>
+                                    {{ log.title }}
+                                </h3>
+                                <div style='display: flex; flex-direction: column; margin: 10px 0px -10px 0px;'>
+                                    <p class='bonus_text'>
+                                        Voir le billet
+                                    </p>
+                                    <hr />
+                                </div>
+                                <p style="bottom: 0px; align-self: flex-end;">
+                                    {{ log.date|date('d/m/Y') }}
+                                </p>
+
+                                {% endif %}
+                            </div>
                         </a>
-                    </h3>
-                    <p>
-                        {{ log.date|date('d/m/Y') }}
-                    </p>
-                    <hr />
+                    </div>
+
+                {% endfor %}
                 </div>
-            {% endfor %}
+                {{ knp_pagination_render(logs) }}
             </section>
 
         </div>

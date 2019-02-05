@@ -15,7 +15,7 @@ class UserFixtures extends Fixture
     }
     public function load(ObjectManager $manager)
     {
-        /// ** COMMENTED TO AVOID CREATING 
+        /// ** COMMENTED TO AVOID CREATING CLONES
         // $user = new User();
         // $user->setUsername('Faber');
         // $user->setPassword($this->encoder->encodePassword($user, '@dm1n1str@teur'));

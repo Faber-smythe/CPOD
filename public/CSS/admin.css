@@ -12,7 +12,7 @@ main {
     margin-top: 30vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
 }
 .admin_nav_link, h2 {
@@ -46,7 +46,7 @@ tr:nth-child(even) {
   background-color: rgba(122, 162, 215, 0.3);
 }
 td, th{
-    padding: 15px;
+    padding: 10px;
     text-align: left;
 }
 button:hover{
@@ -106,7 +106,7 @@ label::first-letter{
     text-transform: capitalize;
 }
 input, textarea, select {
-    margin: 5px 0px;
+    margin: 10px 0px;
     padding: 8px 15px;
     border-radius: 3px;
     background: rgba(122, 162, 215, 0.3);
@@ -116,10 +116,14 @@ input, textarea, select {
 }
 option{
     color:rgb(50, 50, 50);
+    text-transform:  capitalize;
 }
 input:focus, textarea:focus, select:focus{
     color: rgb(122, 162, 215);
     border-color: rgb(122, 162, 215);
+}
+select:hover{
+    cursor: pointer;
 }
 .help-text{
     font-size: 0.7em;
@@ -140,59 +144,58 @@ input:focus, textarea:focus, select:focus{
     transition: all 0.3s;
     cursor: pointer;
 }
+#picture_date_time{
+    display: none;
+}
+/* CHECKBOXES */
 
-/**
- * CSS CUSTOM GRID#8
- */
-.row, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8{
+input[type='checkbox'] {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    margin: 0px;
+    height: 20px;
+    width: 20px;
+}
+.checkmark{
+    position: absolute;
+    cursor: pointer;
+    border-radius: 3px;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background: rgba(122, 162, 215, 0.3);
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.checkbox_wrapper{
     position: relative;
+    height: 20px;
+    width: 20px;
 }
-.row{
-    display: flex;
-    width: 100%;
+.checkbox_wrapper:hover input ~ .checkmark {
+    border: 1px solid rgb(122, 162, 215);
 }
-.col-1{
-    width: 12.5%;
+.checkbox_wrapper input:checked ~ .checkmark {
+    background: rgba(122, 162, 215, 0.5);
+    border: 1px solid rgb(122, 162, 215);
 }
-.col-2{
-    width: 25%;
+.checkbox_wrapper input:checked ~ .checkmark:after {
+    display: block;
 }
-.col-3{
-    width: 37.5%;
-}
-.col-4{
-    width: 50%;
-}
-.col-5{
-    width: 62.5%;
-}
-.col-6{
-    width: 75%;
-}
-.col-7{
-    width: 87.5%;
-}
-.col-8{
-    width: 100%;
-}
-.mar-1{
-    margin-left: 12.5%;
-}
-.mar-2{
-    margin-left: 25%;
-}
-.mar-3{
-    margin-left: 37.5%;
-}
-.mar-4{
-    margin-left: 50%;
-}
-.mar-5{
-    margin-left: 62.5%;
-}
-.mar-6{
-    margin-left: 75%;
-}
-.mar-7{
-    margin-left: 87.5%;
+.checkbox_wrapper .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid #eee;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }

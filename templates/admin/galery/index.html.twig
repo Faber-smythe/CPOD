@@ -1,0 +1,66 @@
+{% extends 'admin_base.html.twig' %}
+
+
+{% block head %}
+
+        {% block stylesheets %}
+        {% endblock %}
+
+
+{% endblock %}
+
+{% block title %}Administration{% endblock %}
+{% block page_title %} Pictures {% endblock %}
+
+{% block body %}
+
+    <main>
+        {% for message in app.flashes('success') %}
+        <p class="{% if action is defined %} {{ action }} {% endif %}" style="padding: 10px; color: #eee; border-radius:5px; text-align: center; width: 100%; font-family: 'Roboto', 'sans-serif';" class="new">
+            {{ message }}
+        </p>
+        {% endfor %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Pays</th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th><a href="{{ path('admin.galery.new') }}" class="btn new">créer</a></th>
+            </tr>
+
+            {% for picture in pictures %}
+            <tr>
+                <td>{{ picture.id }}</td>
+                <td>{{ picture.title }}</td>
+                <td style="text-transform: capitalize;">{{ picture.country }}</td>
+                <td>{{ picture.date|date('Y-m-d') }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="{{ path('admin.galery.edit', {id: picture.id}) }}" class="btn edit">modifier</a></td>
+                <td>
+                    <form style="width: auto !important;" method="POST" action="{{ path('admin.galery.delete', {id: picture.id}) }}" onsubmit="return confirm('L\'ID sera définitivement perdu. Confirmer la suppression ?')">
+                        <input type='hidden' name="_method" value="DELETE" />
+                        <input type='hidden' name="_token" value="{{ csrf_token('delete' ~ picture.id) }}" />
+                        <button class="btn delete" style="padding: 7px;">supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+
+    </main>
+
+{% endblock %}
+
+
+{% block javascripts %}
+{% endblock %}

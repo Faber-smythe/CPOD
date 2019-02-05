@@ -1,0 +1,26 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block head %}
+
+        {% block stylesheets %}
+            <link rel='stylesheet' href="{{ asset('CSS/picture_form.css') }}"/>
+        {% endblock %}
+
+
+{% endblock %}
+
+{% block title %}Administration{% endblock %}
+{% block page_title %} {{ picture.id }} - {{ picture.title }} {% endblock %}
+
+{% block body %}
+
+{{ include('admin/galery/_form.html.twig', {form:form, submit_label: 'modifier', submit_class:'edit'}) }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+<script src="{{ asset('JS/checkboxes.js') }}"></script>
+
+{% endblock %}

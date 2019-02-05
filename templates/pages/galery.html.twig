@@ -1,6 +1,70 @@
 {% extends 'base.html.twig' %}
 
 
+{% block head %}
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('CSS/galery.css') }}">
+        {% endblock %}
+
+{% endblock %}
+{% block title %}Fais voir{% endblock %}
+{% block page_title %} Fais voir {% endblock %}
+
 {% block body %}
-    <h2> Galerie </h2>
+
+    <main>
+        <h2>La galerie pour amuser !</h2>
+        <div class="row" id="filters_container">
+
+            {{ form_start(form) }}
+                <div style="display: flex;" class="row">
+                    <div class="form_row_container col-2 mar-1 md-col-2 md-mar-1 mb-col-3">{{ form_row(form.country) }}</div>
+                    <div class="form_row_container col-8 mar-1 md-col-8 md-mar-1 mb-col-12">{{ form_row(form.tags) }}</div>
+                </div>
+                <hr style="width: 35%; align-self: flex-start; margin-top: 15px; margin-bottom: 10px; background: none; border:none; border-top: 1px solid #eee;" class="mar-1">
+
+                <button  class="btn-submit mar-1">filtrer</button>
+            {{ form_end(form) }}
+
+        </div>
+        <div class="row">
+            {% for picture in pictures %}
+            <div class="picture_container col-3 md-col-4 mb-col-6">
+                <div class="picture">
+                    <div class="picture_content">
+                        <h3>{{ picture.title }}</h3>
+                        <div class='picture_detail'>
+                            <p>
+                            {{ picture.comment }}
+                            </p>
+                            <p>
+                            =>{{ picture.country }}
+                            </p>
+                            <p class="picture_tags">
+                            {% for tag in picture.tag %}
+                                {% if loop.last == false %}
+                                <span>#{{ tag }},&nbsp;</span>
+                                {% else %}
+                                <span>#{{ tag }}</span>
+                                {% endif %}
+                            {% endfor %}
+                            </p>
+                        </div>
+                        <span>{{ picture.date|date('d/m/Y') }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {{ knp_pagination_render(pictures) }}
+    </main>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="{{ asset('JS/checkboxes.js')}}"></script>
+    <script src="{{ asset('JS/galery.js')}}"></script>
 {% endblock %}
