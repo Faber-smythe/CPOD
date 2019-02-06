@@ -6,20 +6,22 @@ $(document).ready(function($) {
     if(!document.querySelector('#fix_header')){
 
         /**
-        ** header behaviour
+        ** HEADER BEHAVIOUR
         **/
         var reached_first_title = false
         var controller = new ScrollMagic.Controller();
         var header_scene =  new ScrollMagic.Scene({
-            triggerElement : 'main',
+            triggerElement : 'body',
             triggerHook : 0.4,
         });
         header_scene.on('start', function(){
             if(reached_first_title == false){
+                console.log('beyond');
                 reached_first_title = true;
             }
             else{
                 reached_first_title = false;
+                console.log('below');
             }
         })
         header_scene.addTo(controller);
@@ -41,6 +43,7 @@ $(document).ready(function($) {
             $('header').css('top', hidden_title_margin+hidden_nav_margin);
             hidden_header = true;
         }
+
         var land_mark_rotate = 90;
         var way = 'down';
         var first_scroll;
@@ -71,39 +74,39 @@ $(document).ready(function($) {
             var st = $(this).scrollTop();
             if (st > lastScrollTop && reached_first_title == true){
                     botscrolling ++;
-
+    // MANAGING BOTSCROLL
     //                console.log("scroll vers le bas /  botscrolling = " + botscrolling);
 
-                if (hidden_header == false && botscrolling > 8){ //Hide header cause page goes down
+                if (hidden_header == false && botscrolling > 6){ //Hide header cause page goes down
                     hide_header_on_botscrolling();
                     if (window.matchMedia("(max-width: 767px)").matches) { //RESPONSIVE PART
                         menufolding_onscroll_mobile();
                     }
                 }
-                if($('#scroll_landmark') && botscrolling==8){ // LANDMARK rotation in "pays" page
+                if($('#scroll_landmark') && botscrolling==6){ // LANDMARK rotation in "pays" page
                     scroll_landmark_down();
                 }
                 topscrolling = 0;
             } else{
                 topscrolling ++;
-
+    // MANAGING TOPSCROLL
     //               console.log("topscrolling = " + topscrolling);
 
-                if(reached_first_title == true && topscrolling > 5){
+                if(reached_first_title == true && topscrolling > 6){
                     $('header').css('top', hidden_title_margin);
                     if (window.matchMedia("(max-width: 767px)").matches) {
                         menufolding_onscroll_mobile(); //RESPONSIVE PART
                     }
                     hidden_header = false;
                 }
-                if(reached_first_title == false && topscrolling > 2){
+                if(reached_first_title == false && topscrolling > 6){
                     $('header').css('top', '0px');
                     if (window.matchMedia("(max-width: 767px)").matches) {
                         menufolding_onscroll_mobile(); //RESPONSIVE PART
                     }
                     hidden_header = false;
                 }
-                if($('#scroll_landmark') && topscrolling==8){ // LANDMARK rotation in "pays" page
+                if($('#scroll_landmark') && topscrolling==6){ // LANDMARK rotation in "pays" page
                     scroll_landmark_up();
                 }
                 botscrolling = 0;

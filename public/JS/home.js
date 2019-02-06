@@ -22,10 +22,5 @@ $(document).ready(function($) {
     });
     thai_parallaxe_scene.setTween($('#parallaxe'), 0.5, {marginTop:parallaxe_final_margin});
     thai_parallaxe_scene.addTo(controller);
-    var thai_wallpaper_scene = new ScrollMagic.Scene({
-        triggerElement: 'body',
-        triggerHook: 0,
-        duration: parallaxe_duration,
-    })
 
 })

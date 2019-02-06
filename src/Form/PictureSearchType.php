@@ -19,7 +19,7 @@ class PictureSearchType extends AbstractType
             ->add('country', ChoiceType::class, [
                 'required' => false,
                 'label' => 'pays',
-                'placeholder' => 'choisir',
+                'placeholder' => '-- Tous --',
                 'choices' => $this->countrychoices
             ])
             ->add('tags', ChoiceType::class, [

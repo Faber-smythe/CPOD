@@ -12,7 +12,9 @@
 {% block page_title %} Fais voir {% endblock %}
 
 {% block body %}
-
+    <div id="background">
+        <div id="background_mask"></div>
+    </div>
     <main>
         <h2>La galerie pour amuser !</h2>
         <div class="row" id="filters_container">
@@ -66,5 +68,6 @@
 
 {% block javascripts %}
     <script src="{{ asset('JS/checkboxes.js')}}"></script>
+    <script src="{{ asset('JS/pagination.js')}}"></script>
     <script src="{{ asset('JS/galery.js')}}"></script>
 {% endblock %}
