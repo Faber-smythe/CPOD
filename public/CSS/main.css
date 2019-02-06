@@ -9,6 +9,9 @@ body {
     align-items: center;
     font-family: 'Roboto', 'sans-serif';
 }
+main{
+    padding-bottom: 40px;
+}
 header{
     background: rgba(255, 255, 255, 0.7);
     width: 100%;

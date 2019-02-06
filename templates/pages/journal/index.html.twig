@@ -36,17 +36,40 @@
             <section>
                 <div class='last_log_container'>
                 {% for log in last_log %}
-                {% if app.request.query.get("page") == 1 %}
+                {% if (app.request.query.get("page") == 1) or (app.request.query.get("page") is null) %}
                     <hr />
                     <h3> {{ log.title }} </h3>
-
-                    <pre>
-                    {{ log.content }}
-                    </pre>
-
-                    <pre>
-                    {{ log.content2 }}
-                    </pre>
+                    {% if (log.picturePosition is defined) and (log.picturePosition ==  0) %}
+                        <div class="img_container">
+                            <img src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
+                        </div>
+                        <pre>
+                        {{ log.content }}
+                        </pre>
+                        <pre>
+                        {{ log.content2 }}
+                        </pre>
+                    {% elseif (log.picturePosition is defined) and (log.picturePosition ==  1) %}
+                        <pre>
+                        {{ log.content }}
+                        </pre>
+                        <div class="img_container">
+                            <img src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
+                        </div>
+                        <pre>
+                        {{ log.content2 }}
+                        </pre>
+                    {% elseif (log.picturePosition is defined) and (log.picturePosition ==  2) %}
+                        <pre>
+                        {{ log.content }}
+                        </pre>
+                        <pre>
+                        {{ log.content2 }}
+                        </pre>
+                        <div class="img_container">
+                            <img src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
+                        </div>
+                    {% endif %}
 
                     <p>Publié le {{ log.date|date('d/m/Y') }}</p>
                 {% endif %}
@@ -59,9 +82,9 @@
                     <div class="loglist_item_container col-4 mb-col-6">
                         <a href="{{ path('journal.show', {id: log.id, slug: log.slug}) }}">
                             <div class="loglist_item">
-                                {% if app.request.query.get("page") == 1 %}
+                                {% if (app.request.query.get("page") == 1) or (app.request.query.get("page") is null) %}
                                     {% if loop.index != 1 %}
-                                    <div class="loglist_item_picture" style="background-image:url('')"></div>
+                                    <div class="loglist_item_picture" style="background-image:url('{{ vich_uploader_asset(log, 'imageFile') }}')"></div>
                                     <h3>
                                         {{ log.title }}
                                     </h3>

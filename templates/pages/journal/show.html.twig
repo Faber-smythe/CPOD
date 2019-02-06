@@ -4,32 +4,22 @@
 {% block head %}
 
         {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('CSS/journal.css') }}">
             <style>
-                main {
-                    position: relative;
-                    z-index: 2;
-                    margin: 25px;
-                    margin-top: 350px;
-                    padding: 30px;
-                    background: #fff;
-                    color: #010000;
-                    font-family: 'Roboto', 'sans-serif';
-                    font-size: 1.1em;
-                    line-height: 1.2;
-                    display: flex;
-                    flex-direction: column;
+                main{
+                    background: #eee;
+                    padding-top: 40px;
                     align-items: center;
                 }
-                h2 {
-                    padding: 20px;
-                    font-family: 'Roboto', 'sans-serif';
-                    font-weight: 200;
+                h2{
+                    font-size: 1.6em;
                     text-transform: uppercase;
-                    text-align: center;
-                    font-size: 2.3em;
+                    margin: 10px 0px;
+                    text-align: justify;
+                    font-weight: 300;
                 }
-                p {
-                    max-width: 90%;
+                .show_log{
+                    width: 70%;
                 }
             </style>
         {% endblock %}
@@ -42,17 +32,49 @@
 {% block body %}
 
 
+    <div class="journal_wallpaper">
+        <img src="{{ asset('journal/wallpaper.jpg') }}" />
+    </div>
     <main>
+        <div class="show_log">
 
-        <h2> {{ log.title }} </h2>
+            <h2> {{ log.title }} </h2>
 
-            <pre>
-            {{ log.content }}
-            </pre>
+            {% if (log.picturePosition is defined) and (log.picturePosition ==  0) %}
+                <div class="img_container">
+                    <img src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
+                </div>
+                <pre>
+                {{ log.content }}
+                </pre>
+                <pre>
+                {{ log.content2 }}
+                </pre>
+            {% elseif (log.picturePosition is defined) and (log.picturePosition ==  1) %}
+                <pre>
+                {{ log.content }}
+                </pre>
+                <div class="img_container">
+                    <img src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
+                </div>
+                <pre>
+                {{ log.content2 }}
+                </pre>
+            {% elseif (log.picturePosition is defined) and (log.picturePosition ==  2) %}
+                <pre>
+                {{ log.content }}
+                </pre>
+                <pre>
+                {{ log.content2 }}
+                </pre>
+                <div class="img_container">
+                    <img src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
+                </div>
+            {% endif %}
 
-            <pre>
-            {{ log.content2 }}
-            </pre>
+            <p>Publié le {{ log.date|date('d/m/Y') }}</p>
+
+        </div>
     </main>
 
 {% endblock %}

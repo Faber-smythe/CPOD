@@ -14,7 +14,7 @@
 
 {% block body %}
 
-    <main>
+    <main style="justify-content: flex-start;">
         {% for message in app.flashes('success') %}
     <p class="{% if action is defined %} {{ action }} {% endif %}" style="padding: 10px; color: #eee; border-radius:5px; text-align: center; width: 100%; font-family: 'Roboto', 'sans-serif';" class="new">
             {{ message }}

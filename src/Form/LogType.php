@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Entity\Log;
 use Symfony\Component\Form\AbstractType;
@@ -32,8 +33,11 @@ class LogType extends AbstractType
                 'label' => 'contenu'
             ])
             ->add('content2', null, [
-                'label' => 'contenu secondaire',
+                'label' => '(Contenu secondaire)',
                 'help' => "Si l'image est placée au milieu du texte, ce champ constituera la seconde partie du contenu."
+            ])
+            ->add('imageFile', FileType::class, [
+                'required' => false,
             ])
         ;
     }

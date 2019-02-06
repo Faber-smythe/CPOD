@@ -10,9 +10,15 @@ textarea {
     min-width: 100%;
     font-size: 0.9em;
 }
-#log_date_date select, #log_date_time select{
+#log_date_date select{
     margin: 5px;
 }
-#log_date_date, #log_date_time{
+#log_date_date{
     margin-left: -5px;
+}
+#log_date_time{
+    display: none;
+}
+#log_imageFile{
+    cursor: pointer;
 }

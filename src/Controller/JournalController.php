@@ -22,7 +22,7 @@ class JournalController extends AbstractController
 
     /**
      * [journal_index description]
-     * @Route("/journal/{topic?voyage}", name="journal.index")
+     * @Route("/journal/index/{topic?voyage}", name="journal.index")
      * @return Response [description]
      */
     public function journal_index(PaginatorInterface $paginator, Request $request, $topic): Response
@@ -43,7 +43,6 @@ class JournalController extends AbstractController
                 6
              );
         }
-        dump($logs);
         return $this->render('pages/journal/index.html.twig', [
             'last_log' => $last_log,
             'logs' => $logs,

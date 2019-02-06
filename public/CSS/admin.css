@@ -9,10 +9,10 @@ h1{
 }
 main {
     min-height: 50vh;
-    margin-top: 30vh;
+    margin-top: 26vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
 }
 .admin_nav_link, h2 {
@@ -110,6 +110,7 @@ input, textarea, select {
     padding: 8px 15px;
     border-radius: 3px;
     background: rgba(122, 162, 215, 0.3);
+    border: 1px solid #eee;
     border-width: 1px;
     color: #eee;
     font-family: 'Roboto', 'sans-serif';
