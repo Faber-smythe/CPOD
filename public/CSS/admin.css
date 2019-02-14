@@ -14,6 +14,7 @@ main {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    color: #eee;
 }
 .admin_nav_link, h2 {
     font-family: 'Amatic SC', cursive;
@@ -84,6 +85,12 @@ button:hover{
     width: 70%;
     font-family: 'Roboto', 'sans-serif';
 }
+h3{
+    text-transform: uppercase;
+    font-size: 2em;
+
+}
+
 /************
  *  GLOBAL FORM STYLE  *
  *************/

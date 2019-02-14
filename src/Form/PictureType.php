@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use App\Entity\Picture;
@@ -38,6 +39,9 @@ class PictureType extends AbstractType
             ])
             ->add('date', null, [
                 'label' => 'date',
+            ])
+            ->add('imageFile', FileType::class, [
+                'required' => false,
             ])
         ;
     }

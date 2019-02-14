@@ -1,0 +1,79 @@
+{% extends 'admin_base.html.twig' %}
+
+
+{% block head %}
+
+        {% block stylesheets %}
+
+        {% endblock %}
+
+
+{% endblock %}
+
+{% block title %}Administration{% endblock %}
+{% block page_title %} Shots : {{ country }} {% endblock %}
+
+{% block body %}
+
+    <main>
+        <a href="{{ path('admin.stage.new', {country: country}) }}" class="btn new">nouvelle étape</a>
+        {% for stage in shots %}
+            {% for shot in stage %}
+                {% if loop.index == 1 %}
+                {# ATTENTION : IN THIS FIRST LOOP, SHOT REFERS TO THE STAGE ! #}
+                    <h3>{{ shot.name }}</h3>
+
+                    <form style="width: auto !important;" method="POST" action="{{ path('admin.stage.delete', {id : shot.id}) }}" onsubmit="return confirm('Confirmer la suppression ?')">
+                        <input type='hidden' name="_method" value="DELETE" />
+                        <input type='hidden' name="_token" value="{{ csrf_token('delete' ~ shot.id) }}" />
+                        <button class="btn delete" style="padding: 7px;">supprimer</button>
+                    </form>
+                    <table>
+                        <tr>
+                            <th>Titre</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th><a href="{{ path('admin.shots.new', {country: country, stage: shot.name}) }}" class="btn new">nouveau shot</a></th>
+                        </tr>
+
+                {% else %}
+
+
+                        <tr>
+                            <td>{{ shot.title }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="{{ path('admin.shots.edit', {id: shot.id, country: shot.country, stage: shot.stage}) }}" class="btn edit">modifier</a></td>
+                            <td>
+                                <form style="width: auto !important;" method="POST" action="{{ path('admin.shots.delete', {id: shot.id}) }}" onsubmit="return confirm('Confirmer la suppression ?')">
+                                    <input type='hidden' name="_method" value="DELETE" />
+                                    <input type='hidden' name="_token" value="{{ csrf_token('delete' ~ shot.id) }}" />
+                                    <button class="btn delete" style="padding: 7px;">supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </table>
+
+        {% endfor %}
+    </main>
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+{% endblock %}

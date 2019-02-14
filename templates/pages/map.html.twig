@@ -23,21 +23,25 @@
             <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1kTIEFlN5ayn8BYhAR60Jl1ssioUmdHZk" width="640" height="480"></iframe>
         </div>
         <p id="steps_links_title">Les étapes en images</p> <br><br>
-        <p id="steps_links">
-            <span>Thaïlande</span><br><br>
-            <a href="../pays/thailande.php#bangkok">Bangkok</a> -
-            <a href="../pays/thailande.php#koh_lanta">Koh&nbsp;Lanta</a> -
-            <a href="../pays/thailande.php#chiang_mai">Chiang&nbsp;Mai</a> -
-            <a href="../pays/thailande.php#chiang_rai">Chiang&nbsp;Rai</a>
-        </p>
-        <p id="steps_links">
-            <span>Vietnam</span><br><br>
-            <a href="../pays/vietnam.php#hanoi">Hanoï</a> -
-            <a href="../pays/vietnam.php#sa_pa">Sa&nbsp;Pa</a> -
-            <a href="../pays/vietnam.php#ha_long">Ha&nbsp;Long</a> -
-            <a href="../pays/vietnam.php#ninh_binh">Ninh&nbsp;Binh</a> -
-            <a href="../pays/vietnam.php#hoi_an">Hoi&nbsp;An</a>
-        </p>
+
+        {% for country in itinerary|keys %}
+            {% if itinerary[country] is empty %}
+            {% else %}
+            <p id="steps_links">
+                <span>{{ country }}</span><br><br>
+
+                {% for stage in itinerary[country] %}
+                    {% if loop.last %}
+                        <a href="#"> {{ stage.name }} </a>
+                    {% else %}
+                        <a href="#"> {{ stage.name }} </a> -
+                    {% endif %}
+                {% endfor %}
+
+            </p>
+            {% endif %}
+
+        {% endfor %}
     </main>
 
     <section id="stats">

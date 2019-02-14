@@ -36,7 +36,7 @@ class AdminPicturesController extends AbstractController
     public function galery_index($action): Response
     {
 
-        $pictures = $this->picturerepository->allSortedByCountry();
+        $pictures = $this->picturerepository->allLatestFirst();
 
         return $this->render('admin/galery/index.html.twig', [
            'pictures' => $pictures,
@@ -66,7 +66,7 @@ class AdminPicturesController extends AbstractController
         foreach($tags as $entity){
             $tagchoices[$entity->getTitle()] = $entity->getTitle();
         }
-        
+
         $picture = new Picture;
 
         $form = $this->createForm(PictureType::class, $picture, array(
@@ -79,7 +79,7 @@ class AdminPicturesController extends AbstractController
             $this->manager->persist($picture);
             $this->manager->flush();
             $this->addFlash('success', 'La photo a bien été ajoutée à la galerie');
-            return $this->redirectToRoute('admin.galery.index', [
+            return $this->redirectToRoute('admin.galery', [
                 'action' => 'new',
             ]);
         }
@@ -120,7 +120,7 @@ class AdminPicturesController extends AbstractController
        if($form->isSubmitted() && $form->isValid()) {
            $this->manager->flush();
            $this->addFlash('success', 'La photo a été modifiée avec succès');
-           return $this->redirectToRoute('admin.galery.index', [
+           return $this->redirectToRoute('admin.galery', [
                'action' => 'edit'
            ]);
        }

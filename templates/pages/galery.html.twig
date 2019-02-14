@@ -24,26 +24,28 @@
                     <div class="form_row_container col-2 mar-1 md-col-2 md-mar-1 mb-col-3">{{ form_row(form.country) }}</div>
                     <div class="form_row_container col-8 mar-1 md-col-8 md-mar-1 mb-col-12">{{ form_row(form.tags) }}</div>
                 </div>
-                <hr style="width: 35%; align-self: flex-start; margin-top: 15px; margin-bottom: 10px; background: none; border:none; border-top: 1px solid #eee;" class="mar-1">
+                <hr style="width: 35%; align-self: flex-start; margin-top: 15px; margin-bottom: 10px; background: none; border:none; border-top: 1px solid #eee;" class="mar-1 md-mar-1">
 
-                <button  class="btn-submit mar-1">filtrer</button>
+                <button  class="btn-submit mar-1 md-mar-1">filtrer</button>
             {{ form_end(form) }}
 
         </div>
         <div class="row">
             {% for picture in pictures %}
-            <div class="picture_container col-3 md-col-4 mb-col-6">
+            <div class="picture_container galery_item col-4 md-col-4 mb-col-6">
                 <div class="picture">
                     <div class="picture_content">
+                        <svg class="dezoom" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M23 15h-2v2h2v-2zm0 4h-2v2h2v-2zm0-8h-2v2h2v-2zm-8-8h-2v2h2V3zm8 4h-2v2h2V7zM1 21h10v-6H1v6zM3 7H1v2h2V7zm12 12h-2v2h2v-2zm4-16h-2v2h2V3zm4 0h-2v2h2V3zm-4 16h-2v2h2v-2zM3 11H1v2h2v-2zm8-8H9v2h2V3zM7 3H5v2h2V3zM3 3H1v2h2V3z"/></svg>
+                        {% if (picture.filename != null) %}
+                        <img src="{{ vich_uploader_asset(picture, 'imageFile') }}">
+                        {% endif %}
+                        <div class="mask"></div>
                         <h3>{{ picture.title }}</h3>
                         <div class='picture_detail'>
-                            <p>
+                            <p class="info_comment">
                             {{ picture.comment }}
                             </p>
-                            <p>
-                            =>{{ picture.country }}
-                            </p>
-                            <p class="picture_tags">
+                            <p class="info_tags">
                             {% for tag in picture.tag %}
                                 {% if loop.last == false %}
                                 <span>#{{ tag }},&nbsp;</span>
@@ -52,8 +54,12 @@
                                 {% endif %}
                             {% endfor %}
                             </p>
+                            <p class="info_country">
+                            {{ picture.country }}&nbsp;–
+                            </p>
                         </div>
-                        <span>{{ picture.date|date('d/m/Y') }}</span>
+                        <span class="toggle_info" style="background: url('{{ asset('galery/toggle_infos.png') }}') no-repeat center; background-size: contain;"></span>
+                        <span class="info_date">{{ picture.date|date('d/m/Y') }}</span>
                     </div>
                 </div>
             </div>

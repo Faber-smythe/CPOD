@@ -23,10 +23,10 @@ class PictureRepository extends ServiceEntityRepository
     // /**
     //  * @return Picture[] Returns an array of Picture objects
     //  */
-    public function allSortedByCountry()
+    public function allLatestFirst()
     {
         return $this->createQueryBuilder('p')
-            ->orderBy('p.country', 'ASC')
+            ->orderBy('p.date', 'DESC')
             ->getQuery()
             ->getResult()
         ;
