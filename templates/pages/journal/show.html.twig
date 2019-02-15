@@ -41,9 +41,7 @@
             <h2> {{ log.title }} </h2>
 
             {% if (log.picturePosition is defined) and (log.picturePosition ==  0) %}
-                <div class="img_container">
-                    <img src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
-                </div>
+                <img class="illustration" src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
                 <pre>
                 {{ log.content }}
                 </pre>
@@ -54,9 +52,7 @@
                 <pre>
                 {{ log.content }}
                 </pre>
-                <div class="img_container">
-                    <img src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
-                </div>
+                <img class="illustration" src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
                 <pre>
                 {{ log.content2 }}
                 </pre>
@@ -67,9 +63,7 @@
                 <pre>
                 {{ log.content2 }}
                 </pre>
-                <div class="img_container">
-                    <img src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
-                </div>
+                <img class="illustration" src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
             {% endif %}
 
             <p>Publié le {{ log.date|date('d/m/Y') }}</p>

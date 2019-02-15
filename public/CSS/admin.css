@@ -8,6 +8,7 @@ h1{
     padding: 10px !important;
 }
 main {
+    position: relative;
     min-height: 50vh;
     margin-top: 26vh;
     display: flex;
@@ -88,7 +89,6 @@ button:hover{
 h3{
     text-transform: uppercase;
     font-size: 2em;
-
 }
 
 /************
@@ -101,6 +101,7 @@ form {
 }
 
 .form_row_container>div, .form_row {
+    position: relative;
     display: flex;
     flex-direction: column;
     margin: 15px 10px;

@@ -1,0 +1,34 @@
+<main>
+
+    {{ form_start(form) }}
+
+        <div class="row">
+            <div class="form_row_container col-5">
+                {{ form_row(form.title) }}
+                {{ form_row(form.country, {'value': country}) }}
+                {{ form_row(form.stage, {'value': stage}) }}
+                {{ form_row(form.imageFile) }}
+                {{ form_row(form.alt) }}
+            </div>
+            <div class="form_row_container col-7">
+                {{ form_row(form.description) }}
+                <div class="row" id="picture_settings">
+                    <div class="form_row_container col-4">
+                        {{ form_row(form.orientation) }}
+                    </div>
+                    <div class="form_row_container col-4">
+                        {{ form_row(form.position) }}
+                    </div>
+                    <div class="form_row_container col-4">
+                        {{ form_row(form.layout) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <button  class="btn-submit {{ submit_class }}">{{ submit_label }}</button>
+
+    {{ form_end(form) }}
+
+</main>

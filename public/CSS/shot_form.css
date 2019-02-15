@@ -1,0 +1,14 @@
+.form_row_container>div{
+    margin: 5px 10px;
+}
+#picture_settings{
+    flex-direction: row !important;
+    justify-content: space-between;
+}
+#picture_settings .form_row_container:first-of-type>div{
+    margin-left: 0px;
+}
+textarea{
+    min-width: 100%;
+    min-height: 20vh;
+}

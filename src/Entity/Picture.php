@@ -63,7 +63,12 @@ class Picture
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
-    
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $alt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -180,6 +185,18 @@ class Picture
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getAlt(): ?string
+    {
+        return $this->alt;
+    }
+
+    public function setAlt(?string $alt): self
+    {
+        $this->alt = $alt;
 
         return $this;
     }

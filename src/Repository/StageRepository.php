@@ -33,6 +33,19 @@ class StageRepository extends ServiceEntityRepository
         ;
     }
 
+    // /**
+    //  * @return Stage[] Returns an array of Stage objects
+    //  */
+    public function findCountryStagesOldFirst($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.country = :val')
+            ->setParameter('val', $value)
+            ->orderBy('s.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     // /**
     //  * @return Stage[] Returns an array of Stage objects

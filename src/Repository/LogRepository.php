@@ -47,7 +47,7 @@ class LogRepository extends ServiceEntityRepository
             ->setFirstResult(1)
             //->orderBy('l.id', 'DESC')
             ->setMaxResults(5)
-            ->orderBy('l.id', 'DESC')
+            ->orderBy('l.date', 'DESC')
             ->getQuery()
         ;
     }

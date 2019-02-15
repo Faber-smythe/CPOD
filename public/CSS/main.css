@@ -105,7 +105,7 @@ pre{
  * CSS CUSTOM GRID#12
  * =============== */
  .row{
-    display: flex;
+    display: flex !important;
     flex-wrap: wrap;
     width: 100%;
 }

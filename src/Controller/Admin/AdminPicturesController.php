@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\PictureType;
@@ -33,10 +34,13 @@ class AdminPicturesController extends AbstractController
      * @param  [type]   $action [description]
      * @return Response         [description]
      */
-    public function galery_index($action): Response
+    public function galery_index(PaginatorInterface $paginator, Request $request, $action): Response
     {
-
-        $pictures = $this->picturerepository->allLatestFirst();
+        $pictures = $paginator->paginate(
+            $this->picturerepository->allLatestFirst(),
+            $request->query->getInt('page', 1),
+            50
+         );
 
         return $this->render('admin/galery/index.html.twig', [
            'pictures' => $pictures,
@@ -66,12 +70,14 @@ class AdminPicturesController extends AbstractController
         foreach($tags as $entity){
             $tagchoices[$entity->getTitle()] = $entity->getTitle();
         }
-
         $picture = new Picture;
+
 
         $form = $this->createForm(PictureType::class, $picture, array(
             'countrychoices' => $countrychoices,
             'tagchoices' => $tagchoices,
+            'fileindication' => 'La photo est obligatoire',
+            'requirefile' => true,
         ));
         $form -> handleRequest($request);
 
@@ -114,6 +120,8 @@ class AdminPicturesController extends AbstractController
         $form = $this->createForm(PictureType::class, $picture, array(
             'countrychoices' => $countrychoices,
             'tagchoices' => $tagchoices,
+            'fileindication' => "Photo actuelle : " . $picture->getFilename(),
+            'requirefile' => false,
         ));
        $form -> handleRequest($request);
 
@@ -145,7 +153,7 @@ class AdminPicturesController extends AbstractController
            $this->manager->flush();
            $this->addFlash('success', "La photo a été supprimée de la galerie");
        }
-       return $this->redirectToRoute('admin.galery.index', [
+       return $this->redirectToRoute('admin.galery', [
            'action' => 'delete'
        ]);
     }

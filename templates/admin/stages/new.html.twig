@@ -1,0 +1,25 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block head %}
+
+        {% block stylesheets %}
+            <link rel='stylesheet' href="{{ asset('CSS/shot_form.css') }}"/>
+        {% endblock %}
+
+
+{% endblock %}
+
+{% block title %} Administration {% endblock %}
+{% block page_title %} Nouvelle étape {% endblock %}
+
+{% block body %}
+
+    {{ include('admin/stages/_form.html.twig', {form:form, submit_label: 'créer', submit_class:'new', country: country}) }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+{% endblock %}

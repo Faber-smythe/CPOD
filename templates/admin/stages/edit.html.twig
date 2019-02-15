@@ -1,0 +1,24 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block head %}
+
+        {% block stylesheets %}
+        {% endblock %}
+
+
+{% endblock %}
+
+{% block title %} Administration {% endblock %}
+{% block page_title %} étape : {{ stage.name }} {% endblock %}
+
+{% block body %}
+
+    {{ include('admin/stages/_form.html.twig', {form:form, submit_label: 'modifier', submit_class:'edit', country: country, stage: stage}) }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+{% endblock %}

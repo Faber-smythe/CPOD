@@ -22,3 +22,7 @@ textarea {
 #log_imageFile{
     cursor: pointer;
 }
+#log_alt{
+    width: 100% !important;
+    min-height: 5vh;
+}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+
+{% block head %}
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('CSS/shots.css') }}" />
+        {% endblock %}
+
+{% endblock %}
+{% block title %}{{ country }}{% endblock %}
+{% block page_title %}  {{ stage.name }}  {% endblock %}
+
+{% block body %}
+
+    <div class="wallpaper">
+        <img src="{{ vich_uploader_asset(stage, 'imageFile') }}" />
+    </div>
+
+    <main>
+    {% for shot in shots %}
+        <section class="{{ shot.position }} no_margin_sides">
+            <div class="frame {{ shot.orientation }} {{ shot.layout }} ">
+                <i class="material-icons">close</i>
+                <div class="picture">
+                    <img src="{{ vich_uploader_asset(shot, 'imageFile')  }}" alt="{{ shot.alt }}">
+                    <p class="picture_title">{{ shot.title }} !</p>
+                </div>
+                <p class="description">{{ shot.description }}</p>
+            </div>
+        </section>
+    {% endfor %}
+
+    </main>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="{{ asset('JS/shots.js') }}"></script>
+{% endblock %}

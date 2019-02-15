@@ -1,4 +1,4 @@
-<main id="fix_header">
+<main>
 
     {{ form_start(form) }}
 
@@ -11,11 +11,12 @@
             <div class="form_row_container col-7">
                 {{ form_row(form.comment) }}
             </div>
-            <div class="form_row_container col-8">
+            <div class="form_row_container col-10">
                 {{ form_row(form.tag) }}
             </div>
             <div class="form_row_container col-5">
                 {{ form_row(form.imageFile) }}
+                {{ form_row(form.alt) }}
             </div>
         </div>
 

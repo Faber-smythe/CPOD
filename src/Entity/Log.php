@@ -48,7 +48,7 @@ class Log
      * @var string|null
      * @ORM\Column(type="string", length=255)
      */
-    private $filename ;
+    private $filename;
 
     /**
      * [private description]
@@ -96,6 +96,11 @@ class Log
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $alt;
 
 
     public function __construct()
@@ -236,6 +241,18 @@ class Log
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getAlt(): ?string
+    {
+        return $this->alt;
+    }
+
+    public function setAlt(?string $alt): self
+    {
+        $this->alt = $alt;
 
         return $this;
     }

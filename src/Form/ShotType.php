@@ -5,42 +5,46 @@ namespace App\Form;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use App\Entity\Picture;
+use App\Entity\Shot;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PictureType extends AbstractType
+class ShotType extends AbstractType
 {
-
-
-    public function buildForm(FormBuilderInterface $builder, array $options )
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $this->countrychoices = $options['countrychoices'];
-        $this->tagchoices = $options['tagchoices'];
+        $this->stagechoices = $options['stagechoices'];
         $this->fileindication = $options['fileindication'];
         $this->requirefile = $options['requirefile'];
 
         $builder
-            ->add('title', null, [
-                'label' => 'titre'
-            ])
             ->add('country', ChoiceType::class, [
                 'label' => 'pays',
                 'choices' => $this->countrychoices
             ])
-            ->add('comment', TextareaType::class, [
-                'label' => 'commentaire'
+            ->add('stage', ChoiceType::class, [
+                'label' => 'étape',
+                'choices' => $this->stagechoices
             ])
-            ->add('tag', ChoiceType::class, [
-                'label' => 'tags',
-                'multiple' => true,
-                'expanded' => true,
-                'choices' => $this->tagchoices
+            ->add('title', null, [
+                'label' => 'titre'
             ])
-            ->add('date', null, [
-                'label' => 'date',
+            ->add('description', TextareaType::class, [
+                'label' => 'description'
+            ])
+            ->add('orientation', ChoiceType::class, [
+                'label' => 'orientation',
+                'choices' => (Shot::ORIENTATION)
+            ])
+            ->add('position', ChoiceType::class, [
+                'label' => 'position',
+                'choices' => (Shot::POSITION)
+            ])
+            ->add('layout', ChoiceType::class, [
+                'label' => 'intitulé',
+                'choices' => (Shot::LAYOUT)
             ])
             ->add('imageFile', FileType::class, [
                 'label' => 'photo',
@@ -57,9 +61,9 @@ class PictureType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Picture::class,
+            'data_class' => Shot::class,
             'countrychoices' => null,
-            'tagchoices' => null,
+            'stagechoices' => null,
             'fileindication' => null,
             'requirefile' => null,
         ]);

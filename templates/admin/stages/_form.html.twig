@@ -1,0 +1,17 @@
+<main>
+
+    {{ form_start(form) }}
+
+        <div class="row">
+            <div class="form_row_container col-4 mar-4">
+                {{ form_row(form.country, {'value': country}) }}
+                {{ form_row(form.name) }}
+                {{ form_row(form.imageFile) }}
+                <button  class="btn-submit {{ submit_class }}">{{ submit_label }}</button>
+            </div>
+        </div>
+
+
+    {{ form_end(form) }}
+
+</main>

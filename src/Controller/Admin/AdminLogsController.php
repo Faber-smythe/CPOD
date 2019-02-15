@@ -68,7 +68,6 @@ class AdminLogsController extends AbstractController
      * [journal_new description]
      * @Route("/admin/journal/{logtype}-logs/new", name="admin.journal.new")
      * @param  Log      $log     [description]
-     * @param  [type]   $logtype [description]
      * @param  Request  $request [description]
      * @return Response          [description]
      */
@@ -100,22 +99,28 @@ class AdminLogsController extends AbstractController
      * [journal_edit description]
      * @Route("/admin/journal/{logtype}-logs/edit-{id}", name="admin.journal.edit")
      * @param  Log      $log     [description]
-     * @param  [type]   $logtype [description]
      * @param  Request  $request [description]
      * @return Response          [description]
      */
     public function journal_edit(Log $log, $logtype, Request $request ): Response
     {
+        if(empty($log->getFilename())){
+            $fileindication = "";
+        }else{
+            $fileindication = "L'illustration actuelle est : " . $log->getFilename();
+        }
 
-        $form = $this->createForm(LogType::class, $log);
+        $form = $this->createForm(LogType::class, $log, array(
+            'fileindication' => $fileindication
+        ));
         $form -> handleRequest($request);
-
         if($form->isSubmitted() && $form->isValid()) {
             $this->manager->flush();
             $this->addFlash('success', 'Journal modifié avec succès');
             return $this->redirectToRoute('admin.journal.index', [
                 'logtype' => $logtype,
-                'action' => 'edit'
+                'action' => 'edit',
+                'fileindication' => $fileindication
             ]);
         }
 

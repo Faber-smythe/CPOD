@@ -4,23 +4,35 @@
 {% block head %}
 
         {% block stylesheets %}
-            <style><
-
-            </style>
+            <link rel="stylesheet" href="{{ asset('CSS/shots.css') }}" />
         {% endblock %}
 
 {% endblock %}
-{% block title %}{{  }}{% endblock %}
-{% block page_title %} {{  }} {% endblock %}
+{% block title %}{{ country }}{% endblock %}
+{% block page_title %}  étapes  {% endblock %}
 
 {% block body %}
     <main>
+        <h2>Choisir une étape :</h2>
+        <div class="row">
 
+            {% for stage in stages %}
+            <div class="stage_container col-4 md-col-6 mb-col-12">
+                <div class="stage_item_wrapper">
+                    <div class="stage_item" style="background: url('{{ vich_uploader_asset(stage, 'imageFile') }}')  no-repeat center; background-size: cover;">
+                        <a class="stage_links" href="{{ path('shots.content', {country: country, stage: stage.name}) }}"></a>
+                        <p>{{ stage.name }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
     </main>
 
 {% endblock %}
 
 
 {% block javascripts %}
-
+    <script src="{{ asset('JS/shots_choice.js') }}"></script>
 {% endblock %}

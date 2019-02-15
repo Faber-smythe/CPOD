@@ -4,7 +4,56 @@
 {% block head %}
 
         {% block stylesheets %}
-
+        <style>
+            body{
+                justify-content: flex-start;
+            }
+            table{
+                margin-bottom: 50px;
+            }
+            main{
+                justify-content: flex-start;
+            }
+            .stage_title{
+                display: flex;
+                min-height: 40px;
+                align-items: center;
+            }
+            #countries_drop{
+                cursor: pointer;
+                align-self: flex-end;
+            }
+            #current_country{
+                text-transform: uppercase;
+                display: flex;
+                align-items: center;
+            }
+            #country_links{
+                overflow: hidden;
+                height: auto;
+                opacity: 0;
+            }
+            #country_links li{
+                display: flex;
+                justify-content: flex-end;
+            }
+            #country_links a{
+                margin: 3px 10px;
+                color: #eee;
+                text-transform: capitalize;
+            }
+            #country_links a:hover{
+                color: #00b1ff;
+            }
+            .half-line{
+                width: 40%;
+                align-self: flex-end;
+                background: none;
+                border: none;
+                border-top: 1px solid #eee;
+                margin: 4px 0px 20px 0px;
+            }
+        </style>
         {% endblock %}
 
 
@@ -16,18 +65,42 @@
 {% block body %}
 
     <main>
-        <a href="{{ path('admin.stage.new', {country: country}) }}" class="btn new">nouvelle étape</a>
+        {% for message in app.flashes('success') %}
+    <p class="{% if action is defined %} {{ action }} {% endif %}" style="padding: 10px; margin-bottom: 10px; color: #eee; border-radius:5px; text-align: center; width: 100%; font-family: 'Roboto', 'sans-serif';" class="new">
+            {{ message }}
+        </p>
+        {% endfor %}
+
+        <div id="countries_drop">
+            <span id="current_country">{{country}}<i class="material-icons">keyboard_arrow_down</i></span>
+            <ul id="country_links" >
+                {% for element in countries %}
+                    {% if element.title == country %}
+                    {% else %}
+                        <li><a href="{{ path('admin.shots', {country: element.title}) }}">{{ element.title }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+
+
+        <hr class="half-line" />
+        <a style="align-self: flex-end;" href="{{ path('admin.stage.new', {country: country}) }}" title="créer une nouvelle étape pour {{country}}" class="btn new">nouvelle étape</a>
+        <hr class="half-line" style="margin-bottom: 50px;"/>
         {% for stage in shots %}
             {% for shot in stage %}
                 {% if loop.index == 1 %}
                 {# ATTENTION : IN THIS FIRST LOOP, SHOT REFERS TO THE STAGE ! #}
-                    <h3>{{ shot.name }}</h3>
-
-                    <form style="width: auto !important;" method="POST" action="{{ path('admin.stage.delete', {id : shot.id}) }}" onsubmit="return confirm('Confirmer la suppression ?')">
-                        <input type='hidden' name="_method" value="DELETE" />
-                        <input type='hidden' name="_token" value="{{ csrf_token('delete' ~ shot.id) }}" />
-                        <button class="btn delete" style="padding: 7px;">supprimer</button>
-                    </form>
+                    <div class="stage_title">
+                        <h3>{{ shot.name }}</h3>
+                        <a style=" margin:0px 20px;" href="{{ path('admin.stage.edit', {id: shot.id, country: shot.country, previousname: shot.name}) }}" title="modifier les informations de l'étape {{ shot.name }}" class="btn edit">modifier</a>
+                        <form style="width: auto !important;" method="POST" action="{{ path('admin.stage.delete', {id : shot.id}) }}" onsubmit="return confirm('L\'étape {{ shot.name }} sera supprimée, ainsi que tous les éléments qu\'elle contient. Confirmer ?')">
+                            <input type='hidden' name="_method" value="DELETE" />
+                            <input type='hidden' name="_token" value="{{ csrf_token('delete' ~ shot.id) }}" />
+                            <button class="btn delete" title="supprimer l'étape {{ shot.name }} ainsi que son contenu" style="padding: 7px;">supprimer</button>
+                        </form>
+                    </div>
                     <table>
                         <tr>
                             <th>Titre</th>
@@ -38,7 +111,7 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th><a href="{{ path('admin.shots.new', {country: country, stage: shot.name}) }}" class="btn new">nouveau shot</a></th>
+                            <th><a href="{{ path('admin.shots.new', {country: country, stage: shot.name}) }}" title="créer un nouveau shot pour cette étape" class="btn new">nouveau shot</a></th>
                         </tr>
 
                 {% else %}
@@ -52,12 +125,12 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><a href="{{ path('admin.shots.edit', {id: shot.id, country: shot.country, stage: shot.stage}) }}" class="btn edit">modifier</a></td>
+                            <td><a href="{{ path('admin.shots.edit', {id: shot.id, country: shot.country, stage: shot.stage}) }}" title="modifier les informations" class="btn edit">modifier</a></td>
                             <td>
-                                <form style="width: auto !important;" method="POST" action="{{ path('admin.shots.delete', {id: shot.id}) }}" onsubmit="return confirm('Confirmer la suppression ?')">
+                                <form style="width: auto !important;" method="POST" action="{{ path('admin.shots.delete', {country: country, id: shot.id}) }}" onsubmit="return confirm('Confirmer la suppression ?')">
                                     <input type='hidden' name="_method" value="DELETE" />
                                     <input type='hidden' name="_token" value="{{ csrf_token('delete' ~ shot.id) }}" />
-                                    <button class="btn delete" style="padding: 7px;">supprimer</button>
+                                    <button class="btn delete" style="padding: 7px;" title="supprimer ce shot de l'étape {{ shot.stage }}">supprimer</button>
                                 </form>
                             </td>
                         </tr>
@@ -75,5 +148,5 @@
 
 
 {% block javascripts %}
-
+    <script src="{{ asset('JS/admin_shots.js')}}"></script>
 {% endblock %}

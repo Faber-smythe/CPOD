@@ -4,6 +4,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use App\Entity\Log;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,6 +14,9 @@ class LogType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        $this->fileindication = $options['fileindication'];
+
         $builder
             ->add('title', null, [
                 'label' => 'titre'
@@ -37,7 +41,13 @@ class LogType extends AbstractType
                 'help' => "Si l'image est placée au milieu du texte, ce champ constituera la seconde partie du contenu."
             ])
             ->add('imageFile', FileType::class, [
+                'label' => 'illustration',
                 'required' => false,
+                'help' => $this->fileindication
+            ])
+            ->add('alt', TextareaType::class, [
+                'label' => 'texte alternatif',
+                'help' => "/!\ l'attribut \"alt\" des images sert aux mal-voyants et au SEO."
             ])
         ;
     }
@@ -46,6 +56,7 @@ class LogType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Log::class,
+            'fileindication' => null,
         ]);
     }
 }

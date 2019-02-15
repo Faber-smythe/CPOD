@@ -4,6 +4,30 @@
 {% block head %}
 
         {% block stylesheets %}
+        <style>
+
+            /**
+             * PAGINATION STYLE
+             */
+            .pagination{
+                min-height: 15px;
+                margin: 20px 0px;
+                display: flex;
+                align-items: center;
+            }
+            .pagination span a:hover{
+                background: rgba(122, 162, 215, 0.3);
+                transition: 0.3s;
+            }
+            .pagination span a{
+                color: #eee !important;
+            }
+
+            .pagination .current{
+                color: #eee;
+            }
+
+        </style>
         {% endblock %}
 
 
@@ -55,7 +79,7 @@
             </tr>
             {% endfor %}
         </table>
-
+        {{ knp_pagination_render(pictures) }}
 
     </main>
 
@@ -63,4 +87,5 @@
 
 
 {% block javascripts %}
+    <script src="{{ asset('JS/pagination.js')}}"></script>
 {% endblock %}

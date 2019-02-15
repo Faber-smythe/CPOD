@@ -40,9 +40,10 @@
                     <hr />
                     <h3> {{ log.title }} </h3>
                     {% if (log.picturePosition is defined) and (log.picturePosition ==  0) %}
-                        <div class="img_container">
-                            <img src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
-                        </div>
+                        {% if (log.filename)|length < 1 %}
+                        {% else %}
+                                <img class="illustration" src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
+                        {% endif %}
                         <pre>
                         {{ log.content }}
                         </pre>
@@ -53,9 +54,10 @@
                         <pre>
                         {{ log.content }}
                         </pre>
-                        <div class="img_container">
-                            <img src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
-                        </div>
+                        {% if (log.filename)|length < 1 %}
+                        {% else %}
+                                <img class="illustration" src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
+                        {% endif %}
                         <pre>
                         {{ log.content2 }}
                         </pre>
@@ -66,9 +68,10 @@
                         <pre>
                         {{ log.content2 }}
                         </pre>
-                        <div class="img_container">
-                            <img src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
-                        </div>
+                        {% if (log.filename)|length < 1 %}
+                        {% else %}
+                                <img class="illustration" src="{{ vich_uploader_asset(log, 'imageFile') }}"/>
+                        {% endif %}
                     {% endif %}
 
                     <p>Publié le {{ log.date|date('d/m/Y') }}</p>
@@ -84,7 +87,11 @@
                             <div class="loglist_item">
                                 {% if (app.request.query.get("page") == 1) or (app.request.query.get("page") is null) %}
                                     {% if loop.index != 1 %}
-                                    <div class="loglist_item_picture" style="background-image:url('{{ vich_uploader_asset(log, 'imageFile') }}')"></div>
+                                    {% if (log.filename)|length < 1 %}
+                                        <div class="loglist_item_picture" style="background-image:url('{{ asset('journal/placeholder.jpg') }}')"></div>
+                                    {% else %}
+                                        <div class="loglist_item_picture" style="background-image:url('{{vich_uploader_asset(log, 'imageFile') }}')"></div>
+                                    {% endif %}
                                     <h3>
                                         {{ log.title }}
                                     </h3>
@@ -100,7 +107,7 @@
 
                                     {% endif %}
                                 {% else %}
-                                <div class="loglist_item_picture" style="background-image:url('')"></div>
+                                <div class="loglist_item_picture" style="background-image:url('{{ asset('journal/placeholder.jpg') }}')"></div>
                                 <h3>
                                     {{ log.title }}
                                 </h3>

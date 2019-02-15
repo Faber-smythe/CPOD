@@ -148,7 +148,6 @@ section a:hover{
     z-index: 5;
     height: 100%;
     width: 100%;
-    background: red;
     filter: brightness(0.6);
     background-position: center;
     background-size: cover;
@@ -197,18 +196,17 @@ section a:hover{
 /**
  * SHOW.TWIG
  */
-.img_container{
-    margin: 15px auto;
-    max-width: 40vw;
-}
 @media screen and (min-width: 992px){
     .img_container{
         box-shadow: 5px 5px 10px 5px rgba(85, 85, 85, 0.5);
     }
 }
-.img_container img{
+.illustration{
     height: auto;
-    width: 100%;
+    width: auto;
+    max-width: 40vw;
+    max-height: 60vh;
+    align-self: center;
 }
 span.date{
     align-self: flex-end;
