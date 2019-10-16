@@ -1,5 +1,4 @@
-  <?php
-
+<?php
 namespace App\Entity;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
