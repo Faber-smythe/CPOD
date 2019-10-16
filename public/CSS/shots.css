@@ -3,7 +3,7 @@
 ** GENERAL
 **/
 body{
-    background: rgb(40, 43, 47);
+    background: rgb(25, 27, 29);
 }
 main{
     width: 96vw;
@@ -43,7 +43,7 @@ h2{
     width: 100%;
 }
 .stage_item_wrapper:hover p{
-    font-size: 1.2em;
+    transform: scale(1.1);
     transition: 0.5s;
 }
 .stage_item{
@@ -221,6 +221,25 @@ section .picture img{
     position: absolute;
     top: 0;
 }
+.near_stage{
+    margin: 35px 0px;
+    display: flex;
+    position: relative;
+}
+.near_stage a{
+    position: absolute;
+    color: #eee;
+    background: rgba(25, 27, 29, 0.5);
+    border-radius: 2px;
+    padding: 12px 24px;
+    text-transform: uppercase;
+    font-size: 1.1em;
+}
+.near_stage a:hover{
+    background: rgba(25, 27, 29, 0.9);
+    transition: 0.2s;
+}
+
 
 /* NOW STYLING FOR SMALLER SCREENS ( DECREASING SIZES !) */
 @media screen and (max-width: 991px){ /* tablets */

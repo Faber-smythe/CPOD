@@ -31,7 +31,8 @@ class PictureType extends AbstractType
                 'choices' => $this->countrychoices
             ])
             ->add('comment', TextareaType::class, [
-                'label' => 'commentaire'
+                'label' => 'commentaire',
+                'required' => false
             ])
             ->add('tag', ChoiceType::class, [
                 'label' => 'tags',
@@ -48,6 +49,7 @@ class PictureType extends AbstractType
                 'help' => $this->fileindication
             ])
             ->add('alt', TextareaType::class, [
+                'required' => true,
                 'label' => 'texte alternatif',
                 'help' => "/!\ l'attribut \"alt\" des images sert aux mal-voyants et au SEO."
             ])

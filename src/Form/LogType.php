@@ -46,6 +46,7 @@ class LogType extends AbstractType
                 'help' => $this->fileindication
             ])
             ->add('alt', TextareaType::class, [
+                'required' => false,
                 'label' => 'texte alternatif',
                 'help' => "/!\ l'attribut \"alt\" des images sert aux mal-voyants et au SEO."
             ])

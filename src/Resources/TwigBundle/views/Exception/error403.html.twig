@@ -25,6 +25,7 @@
                     align-self: center;
                     min-height: 100%;
                     min-width: 100%;
+                    filter: blur(3px);
                 }
                 h2{
                     position: relative;
@@ -41,12 +42,12 @@
 
 {% endblock %}
 
-{% block title %}Cul-de-sac{% endblock %}
-{% block page_title %} „Non, c'est pas ici...“ {% endblock %}
+{% block title %}STAFF ONLY{% endblock %}
+{% block page_title %} „Je cherchais les toilettes...?“ {% endblock %}
 {% block body %}
     <img id="wallpaper" src="{{ asset('journal/placeholder.jpg') }}"/>
     <main>
-        <h2>Désolé, cette adresse n'existe pas... Vous avez l'air perdu, est-ce que vous avez besoin d'une <a href="{{ path('map') }}">carte</a> ?</h2>
+        <h2>Toutes nos excuses, mais ceci est une propriété privée. Je vais vous raccompagner, <a href="{{ path('home') }}">veuillez me suivre</a>.</h2>
     </main>
 
 {% endblock %}

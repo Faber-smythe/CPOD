@@ -50,6 +50,39 @@ class StageRepository extends ServiceEntityRepository
     // /**
     //  * @return Stage[] Returns an array of Stage objects
     //  */
+    public function findPreviousCountryStage($country, $id)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.country = :country')
+            ->andWhere('s.id < :val')
+            ->setParameters(array('country' => $country, 'val' => $id))
+            ->orderBy('s.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    // /**
+    //  * @return Stage[] Returns an array of Stage objects
+    //  */
+    public function findNextCountryStage($country, $id)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.country = :country')
+            ->setParameter('country', $country)
+            ->andWhere('s.id > :val')
+            ->setParameter('val', $id)
+            ->orderBy('s.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+    // /**
+    //  * @return Stage[] Returns an array of Stage objects
+    //  */
     /*
     public function findByExampleField($value)
     {

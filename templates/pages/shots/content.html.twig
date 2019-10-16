@@ -18,6 +18,18 @@
     </div>
 
     <main>
+        <div class="row near_stage">
+        {% if not laststage is empty %}
+            {% for last in laststage %}
+                <a style="left: 0px;" href="{{ path('shots.content', {country: country, stage: last.name}) }}">{{ last.name }}</a>
+            {% endfor %}
+        {% endif %}
+        {% if not nextstage is empty %}
+            {% for next in nextstage %}
+                <a style="right: 0px;" href="{{ path('shots.content', {country: country, stage: next.name}) }}">{{ next.name }}</a>
+            {% endfor %}
+        {% endif %}
+        </div>
     {% for shot in shots %}
         <section class="{{ shot.position }} no_margin_sides">
             <div class="frame {{ shot.orientation }} {{ shot.layout }} ">
@@ -30,7 +42,18 @@
             </div>
         </section>
     {% endfor %}
-
+        <div class="row near_stage">
+        {% if not laststage is empty %}
+            {% for last in laststage %}
+                <a style="left: 0px;" href="{{ path('shots.content', {country: country, stage: last.name}) }}">{{ last.name }}</a>
+            {% endfor %}
+        {% endif %}
+        {% if not nextstage is empty %}
+            {% for next in nextstage %}
+                <a style="right: 0px;" href="{{ path('shots.content', {country: country, stage: next.name}) }}">{{ next.name }}</a>
+            {% endfor %}
+        {% endif %}
+        </div>
     </main>
 
 {% endblock %}

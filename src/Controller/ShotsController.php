@@ -46,10 +46,17 @@ class ShotsController extends AbstractController
         ]);
         $shots = $this->shotrepository->findStageShots($stage->getName());
 
+        $laststage = $this->stagerepository->findPreviousCountryStage($stage->getCountry(), $stage->getId());
+        $nextstage = $this->stagerepository->findNextCountryStage($stage->getCountry(), $stage->getId());
+
+        dump($laststage);
+        dump($nextstage);
         return $this->render('pages/shots/content.html.twig', [
             'stage' => $stage,
             'shots' => $shots,
-            'country' => $country
+            'country' => $country,
+            'laststage' => $laststage,
+            'nextstage' => $nextstage
         ]);
     }
 }

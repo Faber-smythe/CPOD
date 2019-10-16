@@ -72,7 +72,6 @@ class AdminPicturesController extends AbstractController
         }
         $picture = new Picture;
 
-
         $form = $this->createForm(PictureType::class, $picture, array(
             'countrychoices' => $countrychoices,
             'tagchoices' => $tagchoices,

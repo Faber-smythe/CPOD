@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 namespace App\Entity;
 
@@ -98,6 +98,7 @@ class Log
     private $updated_at;
 
     /**
+    * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $alt;

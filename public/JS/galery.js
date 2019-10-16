@@ -23,13 +23,21 @@ $(document).ready(function($) {
     /**
      * IMAGE SIZE IN PICTURE_CONTENT FOR PORTRAIT/LANDSCAPE
      */
-     Array.from($('.picture_container img')).forEach(function(elem){
-         var image = $(elem);
-         if(image.height() < image.width()){
-             image.css('height', '100%');
-             image.css('width', 'auto');
-         }
-     });
+
+    Array.from($('.picture_container img')).forEach(function(elem){
+        elem.onload = function(){
+            var image = $(elem);
+            image.css('opacity', '1');
+            if(image.height() <= image.width()){
+                image.css('height', '100%');
+                image.css('width', 'auto');
+            }
+            if(image.height() > image.width()){
+                image.css('height', 'auto');
+                image.css('width', '100%');
+            }
+        }
+    });
 
 
      var zooming = false; //is a picture currently zoomed ?
@@ -39,7 +47,12 @@ $(document).ready(function($) {
      function dezoom(picture_to_dezoom){
              var picture_to_dezoom = $('.col-12');
              picture_to_dezoom.removeClass('col-12').removeClass('md-col-12').removeClass('mb-col-12');
-             picture_to_dezoom.find('.picture').css('height', picture_to_dezoom.next().find('.picture').width() + 'px');
+             console.log(picture_to_dezoom);
+             if(picture_to_dezoom.next().length){
+                 picture_to_dezoom.find('.picture').css('height', picture_to_dezoom.next().find('.picture').width() + 'px');
+             }else{
+                 picture_to_dezoom.find('.picture').css('height', picture_to_dezoom.prev().find('.picture').width() + 'px');
+             }
              picture_to_dezoom.find('.dezoom').css('display', 'none');
 
              picture_to_dezoom.find('.picture_content').css('justify-content', 'space-around').css('align-items', 'center');
@@ -93,7 +106,6 @@ $(document).ready(function($) {
                      dezoom($(e.target).parent().parent().parent());
                  }
 
-                 $('body').css('background', 'rgb(40, 43, 47)');
                  $('#background').css('display', 'flex');
 
                  zooming = false;
@@ -123,13 +135,18 @@ $(document).ready(function($) {
                          $(this).find('img').css('height','auto');
                          $(this).find('img').css('width','auto').css('max-width', '95vw');
                          $(this).find('.picture').css('height', $(this).find('img').height()+'px');
-                    
+
                      $(this).find('.picture_content>h3, .picture_content>.picture_detail, .picture_content>.info_date').css('opacity', '1').css('width', '50vw').css('background', info_background);
                  }else{
                      /* landscape screen */
                      $(this).find('img').css('height','100%');
                      $(this).find('img').css('width','auto');
-                     $(this).find('.picture').css('height', 0.9*vh_in_pixel+'px');
+                     if(($(this).find('img').height())*2.8 < ($(this).find('img').width())){
+                        $(this).find('.picture').css('height', 0.75*vh_in_pixel+'px');
+                        console.log($(this).find('img'));
+                     }else{
+                        $(this).find('.picture').css('height', 0.9*vh_in_pixel+'px');
+                     }
                      $(this).find('.picture_content>h3, .picture_content>.picture_detail, .picture_content>.info_date').css('opacity', '1').css('width', '25vw').css('background', info_background);
                  }
 
@@ -156,8 +173,11 @@ $(document).ready(function($) {
 
                      $(target).find('.mask').css('opacity', '0');
                      if(target.querySelector('img') && vh_in_pixel<vw_in_pixel){
-
-                         $(target).find('.picture_content>h3, .picture_content>.picture_detail, .picture_content>.info_date, .picture_content>.toggle_info').css('left',  (target.querySelector('img').offsetLeft) + 'px');
+                         var onTheLeft = 0;
+                         if(target.querySelector('img') < (0.94*vw_in_pixel)){
+                           onTheLeft = 0;
+                         }
+                         $(target).find('.picture_content>h3, .picture_content>.picture_detail, .picture_content>.info_date, .picture_content>.toggle_info').css('left',  onTheLeft + 'px');
 
                      }
                  }, 310);
@@ -215,7 +235,6 @@ $(document).ready(function($) {
                  $(this).parent().find('h3, .info_date, .picture_detail').css('transform', 'rotateY(0deg)');
                  toggled = true;
              }
-             console.log(toggled);
          })
      })
 

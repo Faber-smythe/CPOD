@@ -52,6 +52,7 @@ class ShotType extends AbstractType
                 'help' => $this->fileindication
             ])
             ->add('alt', TextareaType::class, [
+                'required' => true,
                 'label' => 'texte alternatif',
                 'help' => "/!\ l'attribut \"alt\" des images sert aux mal-voyants et au SEO."
             ])

@@ -98,7 +98,7 @@ class AdminShotsController extends AbstractController
             'shot' => $shot,
             'form' => $form->createView(),
             'country' => $country,
-            'stage' => $stage
+            'stage' => $stage,
         ]);
 
     }

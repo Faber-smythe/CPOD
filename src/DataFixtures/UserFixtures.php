@@ -21,5 +21,12 @@ class UserFixtures extends Fixture
         // $user->setPassword($this->encoder->encodePassword($user, '@dm1n1str@teur'));
         // $manager->persist($user);
         // $manager->flush();
+
+        /// ** COMMENTED TO AVOID CREATING CLONES
+        $user = new User();
+        $user->setUsername('imbert.marguerite');
+        $user->setPassword($this->encoder->encodePassword($user, 'seraphine22'));
+        $manager->persist($user);
+        $manager->flush();
     }
 }
